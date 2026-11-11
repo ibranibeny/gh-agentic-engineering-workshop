@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Overview | Contoso Agent-Native Engineering Workshop</title>
+<meta name="description" content="Story-driven, hands-on workshop: build, review, secure and ship the Contoso company profile with GitHub agentic workflows, Copilot Fusion, Copilot code review, code security, Dependabot and GitHub Advanced Security.">
+<link rel="stylesheet" href="assets/css/guide.css">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="top-inner">
+<a class="brand" href="index.html"><span class="brand-mark">C</span><span>Contoso Workshop<small>Agent-native engineering on GitHub</small></span></a>
+<nav class="topnav" aria-label="Chapters"><a href="index.html">Home</a><a href="overview.html" aria-current="page">Overview</a><a href="chapter-1.html">1 Repo</a><a href="chapter-2.html">2 Agentic SDLC</a><a href="chapter-3.html">3 Fusion</a><a href="chapter-4.html">4 Code review</a><a href="chapter-5.html">5 Code security</a><a href="chapter-6.html">6 Dependabot</a><a href="chapter-7.html">7 GHAS</a><a href="reference.html">Reference</a></nav>
+<div class="mode"><span>Developer mode</span><button id="devswitch" class="switch" type="button" role="switch" aria-checked="false" aria-label="Developer mode"></button></div>
+</div></header>
+
+<div class="wrap"><aside class="side" aria-label="On this page"><h2>Overview</h2><ol><li><a href="#system">The agent-native system</a></li><li><a href="#agentic">Agentic workflows</a></li><li><a href="#fusion">Copilot Fusion</a></li><li><a href="#review">Copilot code review</a></li><li><a href="#codesec">Code Security</a></li><li><a href="#secrets">Secret Protection</a></li><li><a href="#dependabot">Dependabot</a></li><li><a href="#ghas">GHAS packaging</a></li><li><a href="#compare">Security comparison</a></li><li><a href="#deck-vs-docs">Deck vs GitHub sources</a></li></ol></aside><main id="main" class="main">
+<p class="eyebrow">Overview</p>
+<h1>The GitHub agent-native engineering system</h1>
+<p class="lede">What each capability in the deck does, where it shows up in the workshop, and what it costs. Facts are linked to GitHub Docs and the GitHub Changelog, checked on 12 November 2026.</p>
+
+<h2 id="system">The system in one picture</h2>
+<p>The deck groups the platform into two halves: <b>AI that does the work</b> (agentic workflows, Copilot Fusion, the Copilot app, Copilot Automations) and <b>application security built in, not bolted on</b> (Secret Protection, Code Security, Copilot Autofix, AI scan, Dependabot). The workshop uses one capability per chapter:</p>
+<div class="table-wrap"><table>
+<tr><th>Deck capability</th><th>Status (12 Nov 2026)</th><th>Where you use it</th></tr>
+<tr><td>Agentic workflows</td><td><span class="chip ga">GA</span> 28 Oct 2026 (<a href="https://github.blog/changelog/2026-10-28-github-agentic-workflows-generally-available/">source</a>)</td><td><a href="chapter-2.html">Chapter 2</a>: issue triage agent</td></tr>
+<tr><td>Copilot Fusion</td><td><span class="chip ga">GA</span> 28 Oct 2026 (<a href="https://github.blog/changelog/2026-10-28-route-and-orchestrate-models-with-github-copilot-fusion/">source</a>)</td><td><a href="chapter-3.html">Chapter 3</a>: build the Careers page</td></tr>
+<tr><td>Copilot code review</td><td><span class="chip ga">GA</span>; approvals opt-in (<a href="https://github.blog/changelog/2026-10-28-copilot-code-review-merge-with-confidence-with-max-and-approvals/">source</a>)</td><td><a href="chapter-4.html">Chapter 4</a></td></tr>
+<tr><td>Code Security: CodeQL + Copilot Autofix</td><td><span class="chip ga">GA</span>; free for public repos (<a href="https://github.blog/changelog/2025-03-04-introducing-github-secret-protection-and-github-code-security/">source</a>)</td><td><a href="chapter-5.html">Chapter 5</a></td></tr>
+<tr><td>Secret Protection: push protection</td><td><span class="chip ga">GA</span>; AI-detected secrets in push protection <span class="chip preview">preview</span> (<a href="https://github.blog/changelog/2026-10-28-push-protection-beyond-predefined-secret-patterns/">source</a>)</td><td><a href="chapter-5.html#step-5-5">Chapter 5</a></td></tr>
+<tr><td>Dependabot</td><td><span class="chip ga">GA</span>; reachability analysis <span class="chip preview">preview</span>, GitHub Enterprise Cloud only</td><td><a href="chapter-6.html">Chapter 6</a></td></tr>
+<tr><td>AI scan for repositories</td><td><span class="chip preview">public preview</span> (<a href="https://github.blog/changelog/month/10-2026/">October changelog</a>)</td><td><a href="chapter-7.html">Chapter 7</a> (discussion)</td></tr>
+<tr><td>Copilot app: Projects</td><td><span class="chip preview">public preview</span> (<a href="https://github.blog/changelog/2026-10-28-github-copilot-app-universe-releases/">source</a>)</td><td>Not used (desktop app)</td></tr>
+<tr><td>Copilot Automations</td><td>Private and internal repositories only (<a href="https://docs.github.com/en/copilot/concepts/agent-capabilities/agent-powered-workflows-and-operations/about-automations">source</a>)</td><td>Not used: this workshop repo is public</td></tr>
+</table></div>
+
+<h2 id="agentic">Agentic workflows (GitHub Agentic Workflows, gh-aw)</h2>
+<p>You write a workflow in <b>Markdown</b>: YAML frontmatter for the trigger, permissions, tools and allowed outputs, then plain-language instructions. The <code>gh aw</code> CLI <b>compiles</b> it into a hardened GitHub Actions workflow (<code>.lock.yml</code>) that runs an AI engine (GitHub Copilot by default) on GitHub-hosted runners (<a href="https://github.github.com/gh-aw/introduction/how-they-work/">how it works</a>).</p>
+<figure class="docimg"><img src="assets/diagrams/gh-aw-flow.svg" alt="Agentic workflow job flow: trigger, activation, agent, detection, safe outputs"><figcaption>The job split you will see in Chapter 2, Figure 2.19. Diagram adapted from the <a href="https://github.github.com/gh-aw/introduction/architecture/">gh-aw architecture page</a> (MIT License).</figcaption></figure>
+<div class="cards">
+<div class="card"><h3>Safe outputs</h3><p>The agent job only gets read permissions. Labels, comments, issues and pull requests are requested as <i>safe outputs</i>, scanned by a detection job and applied by a separate job, within the limits you declare (<a href="https://github.github.com/gh-aw/reference/safe-outputs/">source</a>).</p></div>
+<div class="card"><h3>Natural language in, Actions out</h3><p>Copilot CLI writes the Markdown for you using the <code>agentic-workflows</code> skill that <code>gh aw init</code> installs; you review it like any code.</p></div>
+<div class="card"><h3>Authentication</h3><p>Add <code>copilot-requests: write</code> to use the built-in <code>GITHUB_TOKEN</code> (no personal access token), or store a fine-grained token as <code>COPILOT_GITHUB_TOKEN</code> (<a href="https://github.blog/changelog/2026-06-11-agentic-workflows-no-longer-need-a-personal-access-token/">source</a>, <a href="https://github.github.com/gh-aw/reference/auth/">source</a>). The real run used the built-in token on a personal repository.</p></div>
+</div>
+
+<h2 id="fusion">Copilot Fusion</h2>
+<p>Instead of picking one model, you pick <b>Copilot Fusion</b> and Copilot routes and combines models for the task, showing its progress as it works. Effort tiers are <b>Standard</b>, <b>High</b> and <b>Max</b>. It is available in Copilot CLI, VS Code, JetBrains and the GitHub Copilot app (<a href="https://docs.github.com/en/copilot/concepts/models/copilot-fusion">docs</a>, <a href="https://github.blog/changelog/2026-10-28-route-and-orchestrate-models-with-github-copilot-fusion/">changelog</a>).</p>
+<ul>
+<li><b>Select it:</b> <code>/model</code> in Copilot CLI, or the model picker in VS Code and the app. Scripted: <code>copilot --model fusion</code>.</li>
+<li><b>Cost:</b> no separate fee; each underlying model call is billed in GitHub AI Credits at that model's rate. The Copilot CLI banner in the real run advertised <i>30% off Copilot Fusion usage through November 30, 2026</i>.</li>
+<li><b>Governance:</b> your organisation's model policies decide which models Fusion may use.</li>
+</ul>
+
+<h2 id="review">Copilot code review</h2>
+<p>Request a review from <b>Copilot</b> in the pull request's <i>Reviewers</i> menu, or make it automatic with a repository ruleset rule (<i>Automatically request Copilot code review</i>). Copilot follows <code>.github/copilot-instructions.md</code> and path-specific <code>*.instructions.md</code> files (<a href="https://docs.github.com/en/copilot/how-tos/use-copilot-agents/use-code-review">docs</a>).</p>
+<figure class="docimg"><img src="https://docs.github.com/assets/images/help/copilot/code-review/request-review@2x.png" alt="Requesting a review from Copilot under Reviewers" loading="lazy" referrerpolicy="no-referrer"><figcaption>Requesting Copilot as a reviewer. Image: <a href="https://docs.github.com/en/copilot/how-tos/use-copilot-agents/use-code-review">GitHub Docs</a>, &copy; GitHub, Inc., <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</figcaption></figure>
+<figure class="docimg"><img src="https://docs.github.com/assets/images/help/copilot/code-review/review-comment@2x.png" alt="A code review comment left by Copilot" loading="lazy" referrerpolicy="no-referrer"><figcaption>A review comment left by Copilot. Image: <a href="https://docs.github.com/en/copilot/how-tos/use-copilot-agents/use-code-review">GitHub Docs</a>, &copy; GitHub, Inc., <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</figcaption></figure>
+<ul>
+<li><b>Effort:</b> Balanced is the default effort level; Max is in public preview (<a href="https://github.blog/changelog/2026-10-02-copilot-code-review-api-support-and-new-default-effort-level/">source</a>, <a href="https://github.blog/changelog/2026-10-28-copilot-code-review-merge-with-confidence-with-max-and-approvals/">source</a>).</li>
+<li><b>Approvals:</b> Copilot can approve pull requests only if you opt in; otherwise it leaves comment reviews and never blocks a merge.</li>
+<li><b>Billing:</b> reviews consume AI credits plus Actions minutes; Copilot Free does not include code review (<a href="https://github.blog/changelog/2026-06-01-updates-to-github-copilot-billing-and-plans/">source</a>).</li>
+</ul>
+
+<h2 id="codesec">GitHub Code Security</h2>
+<p><b>CodeQL code scanning</b> turns code into a queryable database and finds vulnerabilities such as SQL injection and cross-site scripting on every push and pull request. <b>Default setup</b> is a few clicks in <i>Settings &rarr; Advanced Security</i> (<a href="https://docs.github.com/en/code-security/how-tos/find-and-fix-code-vulnerabilities/configure-code-scanning/configure-code-scanning">docs</a>).</p>
+<figure class="docimg"><img src="https://docs.github.com/assets/images/help/security/default-code-scanning-setup-ghas.png" alt="Code scanning settings with the Default setup button highlighted" loading="lazy" referrerpolicy="no-referrer"><figcaption>Enabling CodeQL default setup. Image: <a href="https://docs.github.com/en/code-security/how-tos/find-and-fix-code-vulnerabilities/configure-code-scanning/configure-code-scanning">GitHub Docs</a>, &copy; GitHub, Inc., <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</figcaption></figure>
+<p><b>Copilot Autofix</b> proposes a patch with an explanation, in pull requests and on existing alerts (<i>Generate fix</i>). It is free for public repositories and does not need a Copilot licence (<a href="https://docs.github.com/en/code-security/how-tos/manage-security-alerts/manage-code-scanning-alerts/triaging-code-scanning-alerts-in-pull-requests">docs</a>).</p>
+<figure class="docimg"><img src="https://docs.github.com/assets/images/help/code-scanning/alert+autofix.png" alt="A code scanning alert in a pull request with a Copilot Autofix suggestion" loading="lazy" referrerpolicy="no-referrer"><figcaption>Copilot Autofix inside a pull request. Image: <a href="https://docs.github.com/en/code-security/how-tos/manage-security-alerts/manage-code-scanning-alerts/triaging-code-scanning-alerts-in-pull-requests">GitHub Docs</a>, &copy; GitHub, Inc., <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</figcaption></figure>
+<p><b>AI scan for repositories</b> <span class="chip preview">public preview</span> scans the whole default branch on demand, including languages CodeQL does not cover; it uses AI credits even on public repositories. <b>Security campaigns</b> bundle historical alerts for developers to burn down, with Copilot-generated fixes.</p>
+
+<h2 id="secrets">GitHub Secret Protection</h2>
+<p><b>Secret scanning</b> finds credentials across the full Git history; <b>push protection</b> blocks them at <code>git push</code>, in web edits, uploads and the API before they land. Delegated bypass, custom patterns and validity checks need GitHub Secret Protection on private repositories (<a href="https://github.blog/changelog/2025-03-04-introducing-github-secret-protection-and-github-code-security/">source</a>).</p>
+<figure class="docimg"><img src="https://docs.github.com/assets/images/help/security/push-protection-example.png" alt="Push protection alert blocking a commit that contains a secret" loading="lazy" referrerpolicy="no-referrer"><figcaption>Push protection blocking a commit in the web editor. Image: <a href="https://docs.github.com/en/get-started/learning-to-code/storing-your-secrets-safely">GitHub Docs</a>, &copy; GitHub, Inc., <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</figcaption></figure>
+<p>GitHub's own tutorial provides a safe dummy token to see push protection without leaking anything real; Chapter 5 uses it (<a href="https://docs.github.com/en/get-started/learning-to-code/storing-your-secrets-safely">source</a>).</p>
+
+<h2 id="dependabot">Dependabot</h2>
+<p><b>Dependabot alerts</b> flag vulnerable dependencies, <b>security updates</b> open pull requests that fix them, and <b>version updates</b> keep packages and GitHub Actions current on a schedule (<a href="https://docs.github.com/en/code-security/tutorials/secure-your-dependencies/dependabot-quickstart">quickstart</a>). Alerts can also be assigned to Copilot (<a href="https://docs.github.com/en/code-security/concepts/supply-chain-security/dependabot-alerts">source</a>).</p>
+<figure class="docimg"><img src="https://docs.github.com/assets/images/help/dependabot/dependabot-alert-fix-summary.png" alt="Fix summary section of a Dependabot alert" loading="lazy" referrerpolicy="no-referrer"><figcaption>A Dependabot alert's fix summary. Image: <a href="https://docs.github.com/en/get-started/learning-to-code/finding-and-fixing-your-first-dependency-vulnerability">GitHub Docs</a>, &copy; GitHub, Inc., <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</figcaption></figure>
+<figure class="docimg"><img src="https://docs.github.com/assets/images/help/repository/create-dependabot-security-update-button-ungrouped.png" alt="Dependabot alert with the Create Dependabot security update button" loading="lazy" referrerpolicy="no-referrer"><figcaption>Creating a Dependabot security update from an alert. Image: <a href="https://docs.github.com/en/code-security/how-tos/manage-security-alerts/manage-dependabot-alerts/view-dependabot-alerts">GitHub Docs</a>, &copy; GitHub, Inc., <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</figcaption></figure>
+<p><b>Reachability analysis</b> <span class="chip preview">preview</span> marks alerts as reachable or unreachable from your code (npm, Yarn and pnpm lockfiles; GitHub Enterprise Cloud only).</p>
+
+<h2 id="ghas">GitHub Advanced Security packaging</h2>
+<div class="cards">
+<div class="card"><span class="chip paid">USD 19 / active committer / month</span><h3>GitHub Secret Protection</h3><p>Secret scanning, push protection, AI-detected secrets, custom patterns, delegated bypass, validity checks, security overview.</p><p class="meta">Free for public repositories: secret scanning and push protection.</p></div>
+<div class="card"><span class="chip paid">USD 30 / active committer / month</span><h3>GitHub Code Security</h3><p>CodeQL code scanning, Copilot Autofix, AI scan, security campaigns, dependency review, custom auto-triage rules, security overview.</p><p class="meta">Free for public repositories: code scanning and Autofix.</p></div>
+<div class="card"><span class="chip ga">Included</span><h3>Dependabot</h3><p>Alerts, security updates and version updates on every plan; reachability needs GitHub Enterprise Cloud during the preview.</p><p class="meta">Security overview: <a href="https://docs.github.com/en/code-security/concepts/security-at-scale/security-overview">docs</a>.</p></div>
+</div>
+<p class="muted">Both products are sold per active committer (pushed in the last 90 days) and need GitHub Team or GitHub Enterprise (<a href="https://github.blog/changelog/2025-03-04-introducing-github-secret-protection-and-github-code-security/">source</a>). Check current prices with your GitHub account team.</p>
+
+<h2 id="compare">Security comparison: who finds what, and when</h2>
+<div class="table-wrap"><table>
+<tr><th>Capability</th><th>Finds or does</th><th>Runs when</th><th>Where results show</th><th>Who fixes</th><th>Cost</th></tr>
+<tr><td>Copilot code review</td><td>Bugs, logic, readability and rule breaks in a PR diff, guided by your instructions</td><td>On request, or automatically by ruleset</td><td>PR review comments with suggestions</td><td>Author applies suggestions; Copilot can approve only if enabled</td><td>Copilot plan; AI credits + Actions minutes</td></tr>
+<tr><td>CodeQL code scanning</td><td>Security vulnerabilities (XSS, injection, path traversal, ...) by data-flow analysis</td><td>Push and PR to protected branches, plus weekly</td><td>Security and quality tab; PR checks and annotations</td><td>Developers, helped by Autofix</td><td>Free on public repos; Code Security on private</td></tr>
+<tr><td>Copilot Autofix</td><td>A patch and explanation for a code scanning alert</td><td>On PR alerts automatically; Generate fix on existing alerts</td><td>The alert and the PR</td><td>Developer reviews and commits</td><td>Free on public repos; Code Security on private</td></tr>
+<tr><td>AI scan (preview)</td><td>AI-found vulnerabilities across the whole default branch, incl. languages CodeQL misses</td><td>On demand</td><td>Code scanning alerts</td><td>Developers / Autofix</td><td>AI credits, even on public repos</td></tr>
+<tr><td>Secret scanning + push protection</td><td>Leaked credentials: partner patterns, custom patterns, AI-detected passwords</td><td>Every push, web edit, upload; full history</td><td>Push is blocked; Secret scanning alerts</td><td>The pusher removes it; the owner rotates it</td><td>Free on public repos; Secret Protection on private</td></tr>
+<tr><td>Dependabot</td><td>Vulnerable and outdated dependencies, with fix PRs</td><td>When advisories or the dependency graph change; on schedule</td><td>Dependabot alerts; pull requests</td><td>Maintainers merge Dependabot PRs (or assign Copilot)</td><td>Included; reachability preview on GHEC</td></tr>
+</table></div>
+<div class="tip"><strong>Rule of thumb.</strong> Copilot code review is a <i>reviewer</i>: broad, conversational, never a gate on its own. CodeQL, secret scanning and Dependabot are <i>detectors</i> with stable rules you can enforce in rulesets. Autofix and Dependabot updates turn detections into ready-to-merge fixes.</div>
+
+<h2 id="deck-vs-docs">Deck vs GitHub sources</h2>
+<div class="table-wrap"><table>
+<tr><th>The deck says</th><th>GitHub sources say (12 Nov 2026)</th></tr>
+<tr><td>Copilot Projects: GA</td><td>Public preview in the GitHub Copilot app (<a href="https://github.blog/changelog/2026-10-28-github-copilot-app-universe-releases/">source</a>).</td></tr>
+<tr><td>Copilot Automations: GA</td><td>No general-availability announcement found; automations run only in private and internal repositories (<a href="https://docs.github.com/en/copilot/concepts/agent-capabilities/agent-powered-workflows-and-operations/about-automations">source</a>).</td></tr>
+<tr><td>Code review leaves comments</td><td>Since 28 Oct 2026 Copilot can also approve pull requests if you opt in (<a href="https://github.blog/changelog/2026-10-28-copilot-code-review-merge-with-confidence-with-max-and-approvals/">source</a>).</td></tr>
+<tr><td>Premium requests</td><td>Copilot usage is billed in GitHub AI Credits since 1 June 2026 (<a href="https://github.blog/changelog/2026-06-01-updates-to-github-copilot-billing-and-plans/">source</a>).</td></tr>
+<tr><td>Reachability analysis for Dependabot</td><td>Public preview and GitHub Enterprise Cloud only.</td></tr>
+</table></div>
+<nav class="pager" aria-label="Chapter navigation"><a href="index.html"><small>Previous</small>Home</a><a href="chapter-1.html" style="text-align:right"><small>Next</small>Chapter 1: Prepare the GitHub repo</a></nav>
+</main></div>
+<footer class="foot"><div class="foot-inner">
+<span>Contoso is a fictional company. Workshop content by the APAC Solution Engineering team; not an official GitHub publication. Screenshots are from a real run on 12 Nov 2026; features and prices change, so check the linked GitHub sources.</span>
+<span><a href="https://github.com/ibranibeny/gh-agentic-engineering-workshop">Guide source</a> &middot; <a href="https://github.com/ibranibeny/contoso-company-profile-starter">Starter template</a> &middot; <a href="https://ibranibeny.github.io/contoso-company-profile/">Live Contoso site</a></span>
+</div></footer>
+<script src="assets/js/guide.js"></script>
+</body>
+</html>

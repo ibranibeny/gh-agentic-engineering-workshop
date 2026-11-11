@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reference | Contoso Agent-Native Engineering Workshop</title>
+<meta name="description" content="Story-driven, hands-on workshop: build, review, secure and ship the Contoso company profile with GitHub agentic workflows, Copilot Fusion, Copilot code review, code security, Dependabot and GitHub Advanced Security.">
+<link rel="stylesheet" href="assets/css/guide.css">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="top-inner">
+<a class="brand" href="index.html"><span class="brand-mark">C</span><span>Contoso Workshop<small>Agent-native engineering on GitHub</small></span></a>
+<nav class="topnav" aria-label="Chapters"><a href="index.html">Home</a><a href="overview.html">Overview</a><a href="chapter-1.html">1 Repo</a><a href="chapter-2.html">2 Agentic SDLC</a><a href="chapter-3.html">3 Fusion</a><a href="chapter-4.html">4 Code review</a><a href="chapter-5.html">5 Code security</a><a href="chapter-6.html">6 Dependabot</a><a href="chapter-7.html">7 GHAS</a><a href="reference.html" aria-current="page">Reference</a></nav>
+<div class="mode"><span>Developer mode</span><button id="devswitch" class="switch" type="button" role="switch" aria-checked="false" aria-label="Developer mode"></button></div>
+</div></header>
+
+<div class="wrap"><aside class="side" aria-label="On this page"><h2>Reference</h2><ol><li><a href="#cheat">Command cheat sheet</a></li><li><a href="#trouble">Troubleshooting</a></li><li><a href="#facilitator">Facilitator notes</a></li><li><a href="#cleanup">Clean-up</a></li><li><a href="#sources">Sources and attribution</a></li></ol></aside><main id="main" class="main">
+<p class="eyebrow">Reference</p>
+<h1>Commands, troubleshooting and sources</h1>
+<p class="lede">Everything you need on one page while running or facilitating the workshop.</p>
+
+<h2 id="cheat">Command cheat sheet</h2>
+<p>All commands run in the codespace terminal unless noted. Story mode readers can do every step in the browser instead.</p>
+<h3>Chapter 1 &middot; Create the repository from the template</h3><pre><code class="lang-bash">gh repo create contoso-company-profile --public \
+  --template ibranibeny/contoso-company-profile-starter --clone</code></pre><h3>Chapter 1 &middot; Publish GitHub Pages with GitHub Actions</h3><pre><code class="lang-bash">gh api -X POST repos/{owner}/contoso-company-profile/pages -f build_type=workflow
+gh workflow run deploy-pages.yml
+gh run watch</code></pre><h3>Chapter 2 &middot; Open a codespace on main</h3><pre><code class="lang-bash">gh codespace create -R &lt;your-account&gt;/contoso-company-profile -b main</code></pre><h3>Chapter 2 &middot; Build, test and preview the site</h3><pre><code class="lang-bash">npm test
+npm run build &amp;&amp; npm run serve   # port 8080</code></pre><h3>Chapter 2 &middot; Install GitHub Agentic Workflows</h3><pre><code class="lang-bash">gh extension install github/gh-aw
+# fallback (official install script):
+curl -sL https://raw.githubusercontent.com/github/gh-aw/main/install-gh-aw.sh | bash
+gh aw version</code></pre><h3>Chapter 2 &middot; Initialise and compile agentic workflows</h3><pre><code class="lang-bash">gh aw init
+gh aw compile</code></pre><h3>Chapter 2 &middot; Install and start the Copilot CLI</h3><pre><code class="lang-bash">npm install -g @github/copilot
+copilot</code></pre><h3>Chapter 3 &middot; Use Copilot Fusion</h3><pre><code class="lang-bash">/model fusion            # inside a session
+copilot --model fusion   # new session</code></pre><h3>Clean-up &middot; Stop the codespace when you finish</h3><pre><code class="lang-bash">gh codespace stop</code></pre>
+
+<h2 id="trouble">Troubleshooting</h2>
+<div class="table-wrap"><table><tr><th>Symptom</th><th>Fix</th></tr><tr><td>The first Deploy to GitHub Pages run fails</td><td>Expected on a brand-new copy: the workflow starts before Pages is switched on. Set Settings &rarr; Pages &rarr; Source to GitHub Actions and run the workflow again (Chapter 1, step 1.4).</td></tr><tr><td>The deploy workflow is skipped in the starter repository</td><td>By design. The <code>is_template</code> condition keeps it quiet in the template and lets it run in every repository created from it.</td></tr><tr><td><code>gh extension install github/gh-aw</code> fails with HTTP 403 and an SSO link</td><td>Your GitHub CLI token is not authorised for an organisation that enforces SAML single sign-on. Authorise it with the printed link, or install with the official script in the cheat sheet.</td></tr><tr><td>Copilot CLI ignores mouse clicks in approval menus</td><td>Use the arrow keys and Enter. Esc cancels the current request.</td></tr><tr><td>The CLI says an administrator replaced your model</td><td>A managed policy decides which models you can use. Carry on with the model it chose, or ask your administrator.</td></tr><tr><td>The agentic workflow fails to authenticate the Copilot engine</td><td>On a repository without a <code>COPILOT_GITHUB_TOKEN</code> secret, add <code>copilot-requests: write</code> under <code>permissions</code> and recompile (Chapter 2, step 2.9).</td></tr><tr><td>The agentic workflow sits in Queued</td><td>In the real run it waited a few minutes for a runner. Give it time before re-running.</td></tr><tr><td>Actions warns that actions target Node.js 20</td><td>The starter pins older action versions on purpose. Dependabot version updates fix it in Chapter 6.</td></tr><tr><td>The codespace stopped</td><td>Codespaces stop after a period of inactivity. Restart from Code &rarr; Codespaces; your files are kept.</td></tr><tr><td>Anyone can trigger the triage agent</td><td>Copilot generated <code>roles: all</code>. Remove it to restore gh-aw&#39;s default role check, and consider an AI credits cap (Chapter 2, developer mode).</td></tr></table></div>
+
+<h2 id="facilitator">Facilitator notes</h2>
+<ul>
+<li><b>Timing:</b> about 3 hours hands-on: Chapter 1 20 min, Chapter 2 45 min, Chapter 3 30 min, Chapter 4 25 min, Chapter 5 35 min, Chapter 6 30 min, Chapter 7 20 min.</li>
+<li><b>Accounts:</b> check before the day that every participant has a Copilot plan that includes Copilot CLI and code review, and that Codespaces is allowed for their account or organisation.</li>
+<li><b>Cost awareness:</b> the issue-triage run in the real run used about 13 GitHub AI Credits. Copilot Fusion, Copilot code review and AI scan also use AI credits; code scanning, secret scanning, push protection and Dependabot are free on public repositories.</li>
+<li><b>Roles:</b> one participant can play every role, or split the room: one person files Lina&#39;s issue, one plays Raka and reviews the guardrails.</li>
+<li><b>Public by design:</b> everything uses fictional Contoso data. Never use real customer names or secrets in the workshop repository.</li>
+</ul>
+
+<h2 id="cleanup">Clean-up</h2>
+<ol>
+<li>Stop or delete the codespace: <b>Code</b> &rarr; <b>Codespaces</b> &rarr; <b>&hellip;</b> &rarr; <b>Stop codespace</b> or <b>Delete</b>.</li>
+<li>Disable the agentic workflow if you keep the repository public: <b>Actions</b> &rarr; <b>Issue triage</b> &rarr; <b>&hellip;</b> &rarr; <b>Disable workflow</b>.</li>
+<li>Keep or archive the repository as your reference.</li>
+</ol>
+
+<h2 id="sources">Sources and attribution</h2>
+<ul><li><a href="https://github.github.com/gh-aw/">GitHub Agentic Workflows documentation</a></li><li><a href="https://github.github.com/gh-aw/reference/frontmatter/">gh-aw frontmatter reference</a></li><li><a href="https://github.blog/changelog/2026-10-28-github-agentic-workflows-generally-available/">Changelog: GitHub Agentic Workflows generally available (28 Oct 2026)</a></li><li><a href="https://docs.github.com/en/copilot/concepts/models/copilot-fusion">Copilot Fusion (GitHub Docs)</a></li><li><a href="https://docs.github.com/en/copilot/how-tos/copilot-cli/set-up-copilot-cli/install-copilot-cli">Installing GitHub Copilot CLI</a></li><li><a href="https://docs.github.com/en/copilot/how-tos/use-copilot-agents/use-code-review">Using Copilot code review</a></li><li><a href="https://docs.github.com/en/code-security/how-tos/find-and-fix-code-vulnerabilities/configure-code-scanning/configure-code-scanning">Configuring code scanning</a></li><li><a href="https://docs.github.com/en/get-started/learning-to-code/storing-your-secrets-safely">Storing your secrets safely (push protection tutorial)</a></li><li><a href="https://docs.github.com/en/code-security/tutorials/secure-your-dependencies/dependabot-quickstart">Dependabot quickstart</a></li><li><a href="https://docs.github.com/en/code-security/concepts/security-at-scale/security-overview">About security overview</a></li><li><a href="https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages">Using custom workflows with GitHub Pages</a></li><li><a href="https://docs.github.com/en/codespaces/developing-in-a-codespace/creating-a-codespace-for-a-repository">Creating a codespace for a repository</a></li></ul>
+<p>Images credited to GitHub Docs are &copy; GitHub, Inc. and used under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>; they are loaded from docs.github.com. Annotated screenshots are from a real run of this workshop on 12 November 2026 in <a href="https://github.com/ibranibeny/contoso-company-profile">ibranibeny/contoso-company-profile</a>; staff-only interface elements and sign-in links are cropped or blurred. Contoso is a fictional company; photos on the Contoso site are AI-generated. The workshop storyline follows the deck <i>GitHub Agent-Native Engineering System</i>.</p>
+<nav class="pager" aria-label="Chapter navigation"><a href="chapter-7.html"><small>Previous</small>Chapter 7: GitHub Advanced Security</a><a href="index.html" style="text-align:right"><small>Next</small>Back to the start</a></nav>
+</main></div>
+<footer class="foot"><div class="foot-inner">
+<span>Contoso is a fictional company. Workshop content by the APAC Solution Engineering team; not an official GitHub publication. Screenshots are from a real run on 12 Nov 2026; features and prices change, so check the linked GitHub sources.</span>
+<span><a href="https://github.com/ibranibeny/gh-agentic-engineering-workshop">Guide source</a> &middot; <a href="https://github.com/ibranibeny/contoso-company-profile-starter">Starter template</a> &middot; <a href="https://ibranibeny.github.io/contoso-company-profile/">Live Contoso site</a></span>
+</div></footer>
+<script src="assets/js/guide.js"></script>
+</body>
+</html>

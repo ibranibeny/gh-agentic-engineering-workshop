@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapter 3: Build with Copilot Fusion | Contoso Agent-Native Engineering Workshop</title>
+<meta name="description" content="Story-driven, hands-on workshop: build, review, secure and ship the Contoso company profile with GitHub agentic workflows, Copilot Fusion, Copilot code review, code security, Dependabot and GitHub Advanced Security.">
+<link rel="stylesheet" href="assets/css/guide.css">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="top-inner">
+<a class="brand" href="index.html"><span class="brand-mark">C</span><span>Contoso Workshop<small>Agent-native engineering on GitHub</small></span></a>
+<nav class="topnav" aria-label="Chapters"><a href="index.html">Home</a><a href="overview.html">Overview</a><a href="chapter-1.html">1 Repo</a><a href="chapter-2.html">2 Agentic SDLC</a><a href="chapter-3.html" aria-current="page">3 Fusion</a><a href="chapter-4.html">4 Code review</a><a href="chapter-5.html">5 Code security</a><a href="chapter-6.html">6 Dependabot</a><a href="chapter-7.html">7 GHAS</a><a href="reference.html">Reference</a></nav>
+<div class="mode"><span>Developer mode</span><button id="devswitch" class="switch" type="button" role="switch" aria-checked="false" aria-label="Developer mode"></button></div>
+</div></header>
+
+<div class="wrap"><aside class="side" aria-label="On this page"><h2>In this chapter</h2><ol><li><a href="#scene">Scene: build it</a></li><li><a href="#step-3-1">3.1 Switch to Copilot Fusion</a></li><li><a href="#step-3-2">3.2 Hand over the issue</a></li><li><a href="#step-3-3">3.3 Watch Fusion work</a></li><li><a href="#step-3-4">3.4 Preview the page</a></li><li><a href="#step-3-5">3.5 Open the pull request</a></li><li><a href="#checkpoint">Checkpoint</a></li></ol></aside><main id="main" class="main">
+<p class="eyebrow">Chapter 3 &middot; Monday 13:00 &middot; about 30 minutes</p>
+<h1>Build the Careers page with Copilot Fusion</h1>
+<p class="lede">Switch the Copilot CLI to Copilot Fusion and let it implement Lina&#39;s issue end to end: branch, code, content, tests and a pull request.</p>
+<div class="warn"><strong>Real run in progress.</strong> Chapter 3 is written from GitHub Docs and is being run end to end in the demo repository now. Annotated screenshots from that run replace the placeholders below in the next update.</div>
+<div id="scene"><div class="scene"><div class="when">Monday 13:00 &middot; back from lunch</div><p>Daniel: &ldquo;The triage comment is your spec. Don&#39;t pick a model, pick <b>Copilot Fusion</b> and let it route the work. I want to know if the result is good enough to merge.&rdquo;</p></div></div>
+
+<section class="step" id="step-3-1"><div class="step-head"><span class="step-no">3.1</span><h3>Switch the Copilot CLI to Copilot Fusion</h3></div><div class="step-body"><p>In the same codespace terminal, start <code>copilot</code> (or continue the session from Chapter 2) and enter <code>/model</code>. Choose <b>Copilot Fusion</b>, then the effort tier: <b>Standard</b> is enough for this feature.</p><div class="pending"><b>Figure 3.1</b> &middot; Real-run screenshot coming in the next update.</div><div class="dev"><div class="dev-label">Developer mode</div><pre><code class="lang-bash">/model fusion           # inside a running session
+copilot --model fusion  # or start a new session with Fusion</code></pre><p>See <a href="https://docs.github.com/en/copilot/concepts/models/copilot-fusion">Copilot Fusion</a> in GitHub Docs. Your organisation&#39;s model policies decide which models Fusion may use.</p></div><p class="why"><b>Why it matters:</b> Fusion routes and combines models for each part of the task, so you stop guessing which single model fits. It is billed in AI credits at the rates of the models it calls.</p></div></section>
+
+<section class="step" id="step-3-2"><div class="step-head"><span class="step-no">3.2</span><h3>Hand the issue to Copilot</h3></div><div class="step-body"><p>Point Copilot at the issue rather than re-typing the requirements. The triage comment already lists acceptance criteria and likely files.</p><div class="pending"><b>Figure 3.2</b> &middot; Real-run screenshot coming in the next update.</div><div class="dev"><div class="dev-label">Developer mode</div><p>Prompt:</p><pre><code class="lang-text">Read issue #1 and the triage comment on it. Create a branch feature/careers-page and implement the Careers page it describes: add it to the main navigation, keep all content in src/data/careers.json, reuse the existing design system, use fictional Contoso data only and extend test/site.test.mjs so the new page is checked. Run npm test until it passes, then commit, push the branch and open a pull request that closes #1.</code></pre></div><p class="why"><b>Why it matters:</b> The issue is the single source of truth: business intent from Lina, scoping from the triage agent, implementation by Copilot.</p></div></section>
+
+<section class="step" id="step-3-3"><div class="step-head"><span class="step-no">3.3</span><h3>Watch Fusion work, approve as it goes</h3></div><div class="step-body"><p>Copilot reads the issue with the GitHub tools, inspects <code>src/</code>, then edits and creates files. Approve each change after reading the diff, exactly as in Chapter 2.</p><div class="pending"><b>Figure 3.3</b> &middot; Real-run screenshot coming in the next update.</div><div class="pending"><b>Figure 3.4</b> &middot; Real-run screenshot coming in the next update.</div><p class="why"><b>Why it matters:</b> You are reviewing a plan and diffs, not typing code. The tests are the objective check that nothing else broke.</p></div></section>
+
+<section class="step" id="step-3-4"><div class="step-head"><span class="step-no">3.4</span><h3>Preview the Careers page in the codespace</h3></div><div class="step-body"><p>Run the local preview and open the forwarded port <b>8080</b> from the <b>Ports</b> tab. Check the navigation, the content and the apply link.</p><div class="pending"><b>Figure 3.5</b> &middot; Real-run screenshot coming in the next update.</div><div class="dev"><div class="dev-label">Developer mode</div><pre><code class="lang-bash">npm run build &amp;&amp; npm run serve</code></pre></div></div></section>
+
+<section class="step" id="step-3-5"><div class="step-head"><span class="step-no">3.5</span><h3>Open the pull request</h3></div><div class="step-body"><p>Copilot pushes <code>feature/careers-page</code> and opens a pull request that closes #1. The <b>CI</b> workflow runs the tests on it.</p><div class="pending"><b>Figure 3.6</b> &middot; Real-run screenshot coming in the next update.</div><p class="why"><b>Why it matters:</b> Agent work lands as a normal pull request: the same checks, reviews and branch rules apply as to human work.</p></div></section>
+
+<h2 id="checkpoint">Checkpoint</h2>
+<div class="tip"><strong>Done when</strong> a pull request from <code>feature/careers-page</code> is open, linked to issue #1, with CI green.</div>
+<div class="scene"><div class="when">Monday 14:45</div><p>Daniel skims the diff. &ldquo;Looks right. But I don&#39;t merge what nobody reviewed, even if an AI wrote it. Especially if an AI wrote it.&rdquo;</p></div>
+<nav class="pager" aria-label="Chapter navigation"><a href="chapter-2.html"><small>Previous</small>Chapter 2: Agentic SDLC</a><a href="chapter-4.html" style="text-align:right"><small>Next</small>Chapter 4: Copilot code review</a></nav>
+</main></div>
+<footer class="foot"><div class="foot-inner">
+<span>Contoso is a fictional company. Workshop content by the APAC Solution Engineering team; not an official GitHub publication. Screenshots are from a real run on 12 Nov 2026; features and prices change, so check the linked GitHub sources.</span>
+<span><a href="https://github.com/ibranibeny/gh-agentic-engineering-workshop">Guide source</a> &middot; <a href="https://github.com/ibranibeny/contoso-company-profile-starter">Starter template</a> &middot; <a href="https://ibranibeny.github.io/contoso-company-profile/">Live Contoso site</a></span>
+</div></footer>
+<script src="assets/js/guide.js"></script>
+</body>
+</html>

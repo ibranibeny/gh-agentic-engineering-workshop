@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Home | Contoso Agent-Native Engineering Workshop</title>
+<meta name="description" content="Story-driven, hands-on workshop: build, review, secure and ship the Contoso company profile with GitHub agentic workflows, Copilot Fusion, Copilot code review, code security, Dependabot and GitHub Advanced Security.">
+<link rel="stylesheet" href="assets/css/guide.css">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="top-inner">
+<a class="brand" href="index.html"><span class="brand-mark">C</span><span>Contoso Workshop<small>Agent-native engineering on GitHub</small></span></a>
+<nav class="topnav" aria-label="Chapters"><a href="index.html" aria-current="page">Home</a><a href="overview.html">Overview</a><a href="chapter-1.html">1 Repo</a><a href="chapter-2.html">2 Agentic SDLC</a><a href="chapter-3.html">3 Fusion</a><a href="chapter-4.html">4 Code review</a><a href="chapter-5.html">5 Code security</a><a href="chapter-6.html">6 Dependabot</a><a href="chapter-7.html">7 GHAS</a><a href="reference.html">Reference</a></nav>
+<div class="mode"><span>Developer mode</span><button id="devswitch" class="switch" type="button" role="switch" aria-checked="false" aria-label="Developer mode"></button></div>
+</div></header>
+<section class="hero"><div class="hero-inner"><div>
+<p class="eyebrow">Hands-on workshop &middot; about 3 hours &middot; real run, real screenshots</p>
+<h1>Ship Contoso's company profile the agent-native way</h1>
+<p>One story, seven chapters. You join Contoso Technology Solutions, an IT solution provider, on the week it moves to GitHub's agent-native engineering system. You will plan with an agentic workflow, build with Copilot Fusion, review with Copilot code review, secure with GitHub Advanced Security and Dependabot, and deploy to GitHub Pages.</p>
+<div class="btns"><a class="btn btn-green" href="chapter-1.html">Start Chapter 1</a><a class="btn btn-ghost" href="overview.html">Read the overview</a></div>
+</div>
+<div class="hero-card"><h2>By the end you will have</h2><ol>
+<li>A live company profile on GitHub Pages, deployed by GitHub Actions</li>
+<li>An agentic workflow that triages every new issue</li>
+<li>A feature built with Copilot Fusion and reviewed by Copilot</li>
+<li>CodeQL, Copilot Autofix, secret scanning and Dependabot guarding main</li>
+<li>A clear map of what GitHub Secret Protection and GitHub Code Security add</li>
+</ol></div></div></section>
+<div class="wrap single"><main id="main" class="main">
+<p class="eyebrow">The story</p>
+<h1>Monday, 08:30, Contoso Tower, Jakarta</h1>
+<div class="scene"><div class="when">Prologue</div><p>Daniel, Contoso&#39;s CTO, opens the weekly engineering stand-up with one slide from GitHub&#39;s <i>Agent-Native Engineering System</i> deck: <b>14x commit growth this year</b>. &ldquo;Our competitors ship faster because their developers direct agents instead of typing every line. This week we prove we can do the same, safely.&rdquo;</p><p class="quote">&ldquo;Start with something everyone can see: our public company profile. It has to be live on GitHub Pages by Tuesday afternoon, Lina needs a Careers page, and Raka signs off security before anything ships.&rdquo;</p></div>
+<h2 id="cast">The cast</h2>
+<div class="cast"><div class="person"><span class="avatar" style="background:#2563eb">DW</span><div><strong>Daniel Wijaya</strong><span>CTO. Wants every team on an agent-native engineering system by Friday.</span></div></div><div class="person"><span class="avatar" style="background:#9333ea">LH</span><div><strong>Lina Hartono</strong><span>Chief People Officer. Needs a Careers page to hire 120 engineers.</span></div></div><div class="person"><span class="avatar" style="background:#dc2626">RN</span><div><strong>Raka Nugroho</strong><span>CISO. Will not let anything ship without security gates.</span></div></div><div class="person"><span class="avatar" style="background:#0d9488">YOU</span><div><strong>You (Dewi)</strong><span>Developer on Contoso's digital team. Builds, reviews, secures and ships.</span></div></div></div>
+
+<h2 id="sdlc">The agentic SDLC you will run</h2>
+<p>Every chapter is one stage of the same loop. Agents do the repetitive work at each stage; you stay in control of what gets merged and shipped.</p>
+<figure class="docimg"><img src="assets/diagrams/agentic-sdlc.svg" alt="The agentic SDLC loop: plan, build, review, secure, ship, operate, with the developer in control at the centre"><figcaption>The loop used in this workshop. Diagram drawn for this guide.</figcaption></figure>
+
+<h2 id="chapters">Seven chapters, two days in the story</h2>
+<p>The chapters follow the steps in the deck. Each one opens with a scene, then gives numbered steps with real, annotated screenshots: the orange numbers in each picture match the numbered explanations under it.</p>
+<ol class="timeline"><li><span class="t">Mon 09:00</span><div><h3><a href="chapter-1.html">1. Prepare the GitHub repo</a></h3><p>Create the repository from the starter template, switch on GitHub Pages and ship the first deployment.</p></div></li><li><span class="t">Mon 10:00</span><div><h3><a href="chapter-2.html">2. Agentic SDLC in a codespace</a></h3><p>Open a codespace, describe an issue-triage agent in plain language and let GitHub Agentic Workflows run it.</p></div></li><li><span class="t">Mon 13:00</span><div><h3><a href="chapter-3.html">3. Build with Copilot Fusion</a></h3><p>Switch Copilot CLI to Copilot Fusion and build Lina's Careers page from the triaged issue.</p></div></li><li><span class="t">Mon 15:00</span><div><h3><a href="chapter-4.html">4. Copilot code review</a></h3><p>Ask Copilot to review the pull request, act on its comments and make review automatic with a ruleset.</p></div></li><li><span class="t">Tue 09:00</span><div><h3><a href="chapter-5.html">5. Code security</a></h3><p>Turn on CodeQL, fix a real cross-site scripting bug with Copilot Autofix and see push protection stop a secret.</p></div></li><li><span class="t">Tue 11:00</span><div><h3><a href="chapter-6.html">6. Dependabot</a></h3><p>Find the vulnerable dependency, merge Dependabot's fix and keep actions and packages current.</p></div></li><li><span class="t">Tue 14:00</span><div><h3><a href="chapter-7.html">7. GitHub Advanced Security</a></h3><p>Review the security overview, map what you used to Secret Protection and Code Security, and plan the rollout.</p></div></li></ol>
+
+<h2 id="modes">Story mode and developer mode</h2>
+<div class="cards">
+<div class="card"><h3>Story mode (default)</h3><p>Scenes, click-by-click steps and annotated screenshots. Ideal for presenters, product owners and anyone new to GitHub.</p></div>
+<div class="card"><h3>Developer mode</h3><p>Switch it on in the top bar to reveal the exact commands, generated files, YAML, permissions and what happens under the hood. Your choice is remembered; add <code>?mode=dev</code> to a link to share it.</p></div>
+</div>
+<div class="dev"><div class="dev-label">Developer mode</div><p>Developer mode is on. Purple panels like this one hold commands, file contents and internals. Turn the switch off to hide them again.</p></div>
+
+<h2 id="before">Before you start</h2>
+<div class="table-wrap"><table>
+<tr><th>You need</th><th>Why</th></tr>
+<tr><td>A GitHub account</td><td>Everything runs in your own public repository. Public repositories get GitHub Pages, CodeQL code scanning, secret scanning, push protection and Dependabot at no cost.</td></tr>
+<tr><td>A GitHub Copilot plan</td><td>Copilot CLI, Copilot Fusion and Copilot code review need a Copilot plan (Copilot Free does not include code review). Copilot usage is billed in GitHub AI Credits.</td></tr>
+<tr><td>GitHub Codespaces</td><td>Personal accounts get a monthly free allowance (120 core-hours on GitHub Free, enough for about 60 hours on a 2-core machine). Stop the codespace when you finish.</td></tr>
+<tr><td>A modern browser</td><td>No local installs: the codespace provides Node.js 22 and the GitHub CLI.</td></tr>
+</table></div>
+<div class="tip"><strong>Workshop assets.</strong> Starter template: <a href="https://github.com/ibranibeny/contoso-company-profile-starter">contoso-company-profile-starter</a>. The repository from the real run: <a href="https://github.com/ibranibeny/contoso-company-profile">contoso-company-profile</a>. The live result: <a href="https://ibranibeny.github.io/contoso-company-profile/">https://ibranibeny.github.io/contoso-company-profile/</a>.</div>
+<div class="warn"><strong>Honest by design.</strong> The deck is a product overview; this guide is grounded in GitHub Docs and the GitHub Changelog as of 12 November 2026. Where they differ from the deck (for example, Copilot Projects is in public preview), the <a href="overview.html#deck-vs-docs">overview</a> says so and links the source.</div>
+<nav class="pager" aria-label="Chapter navigation"><span></span><a href="overview.html" style="text-align:right"><small>Next</small>Overview: the agent-native engineering system</a></nav>
+</main></div>
+<footer class="foot"><div class="foot-inner">
+<span>Contoso is a fictional company. Workshop content by the APAC Solution Engineering team; not an official GitHub publication. Screenshots are from a real run on 12 Nov 2026; features and prices change, so check the linked GitHub sources.</span>
+<span><a href="https://github.com/ibranibeny/gh-agentic-engineering-workshop">Guide source</a> &middot; <a href="https://github.com/ibranibeny/contoso-company-profile-starter">Starter template</a> &middot; <a href="https://ibranibeny.github.io/contoso-company-profile/">Live Contoso site</a></span>
+</div></footer>
+<script src="assets/js/guide.js"></script>
+</body>
+</html>

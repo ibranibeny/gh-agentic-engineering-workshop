@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapter 6: Dependabot | Contoso Agent-Native Engineering Workshop</title>
+<meta name="description" content="Story-driven, hands-on workshop: build, review, secure and ship the Contoso company profile with GitHub agentic workflows, Copilot Fusion, Copilot code review, code security, Dependabot and GitHub Advanced Security.">
+<link rel="stylesheet" href="assets/css/guide.css">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="top-inner">
+<a class="brand" href="index.html"><span class="brand-mark">C</span><span>Contoso Workshop<small>Agent-native engineering on GitHub</small></span></a>
+<nav class="topnav" aria-label="Chapters"><a href="index.html">Home</a><a href="overview.html">Overview</a><a href="chapter-1.html">1 Repo</a><a href="chapter-2.html">2 Agentic SDLC</a><a href="chapter-3.html">3 Fusion</a><a href="chapter-4.html">4 Code review</a><a href="chapter-5.html">5 Code security</a><a href="chapter-6.html" aria-current="page">6 Dependabot</a><a href="chapter-7.html">7 GHAS</a><a href="reference.html">Reference</a></nav>
+<div class="mode"><span>Developer mode</span><button id="devswitch" class="switch" type="button" role="switch" aria-checked="false" aria-label="Developer mode"></button></div>
+</div></header>
+
+<div class="wrap"><aside class="side" aria-label="On this page"><h2>In this chapter</h2><ol><li><a href="#scene">Scene: supply chain</a></li><li><a href="#step-6-1">6.1 Turn on Dependabot</a></li><li><a href="#step-6-2">6.2 Read the alerts</a></li><li><a href="#step-6-3">6.3 Merge the security update</a></li><li><a href="#step-6-4">6.4 Add version updates</a></li><li><a href="#step-6-5">6.5 Update the actions</a></li><li><a href="#checkpoint">Checkpoint</a></li></ol></aside><main id="main" class="main">
+<p class="eyebrow">Chapter 6 &middot; Tuesday 11:00 &middot; about 30 minutes</p>
+<h1>Dependabot: fix vulnerable and outdated dependencies</h1>
+<p class="lede">Turn on Dependabot alerts and security updates, merge the fix for the vulnerable template engine and let version updates retire the Node.js 20 warnings from Chapter 1.</p>
+<div class="warn"><strong>Real run in progress.</strong> Chapter 6 is written from GitHub Docs and is being run end to end in the demo repository now. Annotated screenshots from that run replace the placeholders below in the next update.</div>
+<div id="scene"><div class="scene"><div class="when">Tuesday 11:00</div><p>Raka: &ldquo;Your site depends on code you never read. One of those packages has a published remote-code-execution advisory. Find it, fix it, and make sure it never goes stale again.&rdquo;</p></div></div>
+
+<section class="step" id="step-6-1"><div class="step-head"><span class="step-no">6.1</span><h3>Turn on Dependabot alerts and security updates</h3></div><div class="step-body"><p>Open <b>Settings</b> &rarr; <b>Advanced Security</b> and enable <b>Dependabot alerts</b> and <b>Dependabot security updates</b>.</p><div class="pending"><b>Figure 6.1</b> &middot; Real-run screenshot coming in the next update.</div><div class="dev"><div class="dev-label">Developer mode</div><p>See the <a href="https://docs.github.com/en/code-security/tutorials/secure-your-dependencies/dependabot-quickstart">Dependabot quickstart</a>.</p></div></div></section>
+
+<section class="step" id="step-6-2"><div class="step-head"><span class="step-no">6.2</span><h3>Read the alerts</h3></div><div class="step-body"><p>Open <b>Security and quality</b> &rarr; <b>Dependabot</b>. The starter pins <code>ejs</code> to <b>3.1.6</b>, which has published advisories, including template injection fixed in 3.1.7.</p><div class="pending"><b>Figure 6.2</b> &middot; Real-run screenshot coming in the next update.</div><div class="pending"><b>Figure 6.3</b> &middot; Real-run screenshot coming in the next update.</div><p class="why"><b>Why it matters:</b> Alerts tell you which advisory, which versions are affected, and the first patched version.</p></div></section>
+<figure class="docimg"><img src="https://docs.github.com/assets/images/help/dependabot/dependabot-alert-vulnerability-details.png" alt="Vulnerability details section of a Dependabot alert" loading="lazy" referrerpolicy="no-referrer"><figcaption>Alert details in GitHub Docs. Image: <a href="https://docs.github.com/en/code-security/how-tos/manage-security-alerts/manage-dependabot-alerts/view-dependabot-alerts">GitHub Docs</a>, &copy; GitHub, Inc., <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</figcaption></figure>
+
+<section class="step" id="step-6-3"><div class="step-head"><span class="step-no">6.3</span><h3>Merge Dependabot&#39;s security update</h3></div><div class="step-body"><p>Dependabot opens a pull request that upgrades <code>ejs</code> to a patched version. CI and Copilot code review run on it. Merge it when green.</p><div class="pending"><b>Figure 6.4</b> &middot; Real-run screenshot coming in the next update.</div></div></section>
+
+<section class="step" id="step-6-4"><div class="step-head"><span class="step-no">6.4</span><h3>Add version updates for npm and GitHub Actions</h3></div><div class="step-body"><p>Add <code>.github/dependabot.yml</code> (developer mode) so Dependabot also keeps packages and workflow actions current every week, grouped into one pull request per ecosystem.</p><div class="pending"><b>Figure 6.5</b> &middot; Real-run screenshot coming in the next update.</div><div class="dev"><div class="dev-label">Developer mode</div><pre><code class="lang-yaml">version: 2
+updates:
+  - package-ecosystem: &quot;npm&quot;
+    directory: &quot;/&quot;
+    schedule:
+      interval: &quot;weekly&quot;
+    groups:
+      npm-dependencies:
+        patterns: [&quot;*&quot;]
+  - package-ecosystem: &quot;github-actions&quot;
+    directory: &quot;/&quot;
+    schedule:
+      interval: &quot;weekly&quot;
+    groups:
+      github-actions:
+        patterns: [&quot;*&quot;]</code></pre><p>Options: <a href="https://docs.github.com/en/code-security/reference/supply-chain-security/dependabot-options-reference">Dependabot options reference</a>.</p></div></div></section>
+
+<section class="step" id="step-6-5"><div class="step-head"><span class="step-no">6.5</span><h3>Merge the GitHub Actions update</h3></div><div class="step-body"><p>Dependabot opens a grouped pull request for the workflow actions. Merging it removes the Node.js 20 deprecation warnings you saw in Chapter 1.</p><div class="pending"><b>Figure 6.6</b> &middot; Real-run screenshot coming in the next update.</div></div></section>
+
+<h2 id="checkpoint">Checkpoint</h2>
+<div class="tip"><strong>Done when</strong> no open critical Dependabot alerts remain and <code>.github/dependabot.yml</code> is on main.</div>
+<div class="scene"><div class="when">Tuesday 13:00</div><p>Raka: &ldquo;Last thing: show me the whole picture, and tell me what we would have to buy to do this on our private repositories.&rdquo;</p></div>
+<nav class="pager" aria-label="Chapter navigation"><a href="chapter-5.html"><small>Previous</small>Chapter 5: Code security</a><a href="chapter-7.html" style="text-align:right"><small>Next</small>Chapter 7: GitHub Advanced Security</a></nav>
+</main></div>
+<footer class="foot"><div class="foot-inner">
+<span>Contoso is a fictional company. Workshop content by the APAC Solution Engineering team; not an official GitHub publication. Screenshots are from a real run on 12 Nov 2026; features and prices change, so check the linked GitHub sources.</span>
+<span><a href="https://github.com/ibranibeny/gh-agentic-engineering-workshop">Guide source</a> &middot; <a href="https://github.com/ibranibeny/contoso-company-profile-starter">Starter template</a> &middot; <a href="https://ibranibeny.github.io/contoso-company-profile/">Live Contoso site</a></span>
+</div></footer>
+<script src="assets/js/guide.js"></script>
+</body>
+</html>
