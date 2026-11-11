@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560" role="img" aria-labelledby="t d" font-family="Segoe UI, system-ui, -apple-system, Helvetica, Arial, sans-serif">
+  <title id="t">The agentic SDLC used in this workshop</title>
+  <desc id="d">A loop of six stages: Plan with an agentic workflow, Build with Codespaces and Copilot Fusion, Review with Copilot code review, Secure with code scanning, Copilot Autofix, secret scanning and Dependabot, Ship with GitHub Actions to GitHub Pages, and Operate with agentic reports. Developers stay in control at the centre.</desc>
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1b34"/><stop offset="1" stop-color="#14305c"/></linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#5eead4"/></marker>
+  </defs>
+  <rect width="960" height="560" rx="24" fill="url(#g1)"/>
+  <g fill="none" stroke="#5eead4" stroke-width="2.5" stroke-dasharray="7 7" marker-end="url(#arrow)" opacity=".85">
+    <path d="M330 120 Q480 70 630 120"/>
+    <path d="M760 190 Q820 280 760 370"/>
+    <path d="M630 440 Q480 490 330 440"/>
+    <path d="M200 370 Q140 280 200 190"/>
+  </g>
+  <g>
+    <circle cx="480" cy="280" r="104" fill="#0a1a33" stroke="#2dd4bf" stroke-width="3"/>
+    <text x="480" y="262" text-anchor="middle" fill="#ffffff" font-size="22" font-weight="700">Developer</text>
+    <text x="480" y="290" text-anchor="middle" fill="#ffffff" font-size="22" font-weight="700">in control</text>
+    <text x="480" y="320" text-anchor="middle" fill="#93c5fd" font-size="14">reviews, approves, merges</text>
+  </g>
+  <g font-size="15">
+    <g transform="translate(150 60)">
+      <rect width="200" height="118" rx="16" fill="#ffffff"/>
+      <text x="18" y="34" fill="#1d4ed8" font-size="13" font-weight="700" letter-spacing="1.5">1 · PLAN</text>
+      <text x="18" y="60" fill="#0f172a" font-weight="700">Issue + agentic</text>
+      <text x="18" y="80" fill="#0f172a" font-weight="700">triage workflow</text>
+      <text x="18" y="104" fill="#475569" font-size="13">gh-aw · safe outputs</text>
+    </g>
+    <g transform="translate(610 60)">
+      <rect width="200" height="118" rx="16" fill="#ffffff"/>
+      <text x="18" y="34" fill="#1d4ed8" font-size="13" font-weight="700" letter-spacing="1.5">2 · BUILD</text>
+      <text x="18" y="60" fill="#0f172a" font-weight="700">Codespaces +</text>
+      <text x="18" y="80" fill="#0f172a" font-weight="700">Copilot Fusion</text>
+      <text x="18" y="104" fill="#475569" font-size="13">Copilot CLI · tests</text>
+    </g>
+    <g transform="translate(720 221)">
+      <rect width="210" height="118" rx="16" fill="#ffffff"/>
+      <text x="18" y="34" fill="#1d4ed8" font-size="13" font-weight="700" letter-spacing="1.5">3 · REVIEW</text>
+      <text x="18" y="60" fill="#0f172a" font-weight="700">Copilot code</text>
+      <text x="18" y="80" fill="#0f172a" font-weight="700">review on the PR</text>
+      <text x="18" y="104" fill="#475569" font-size="13">rulesets · instructions</text>
+    </g>
+    <g transform="translate(610 382)">
+      <rect width="200" height="118" rx="16" fill="#ffffff"/>
+      <text x="18" y="34" fill="#1d4ed8" font-size="13" font-weight="700" letter-spacing="1.5">4 · SECURE</text>
+      <text x="18" y="60" fill="#0f172a" font-weight="700">CodeQL, Autofix,</text>
+      <text x="18" y="80" fill="#0f172a" font-weight="700">secrets, Dependabot</text>
+      <text x="18" y="104" fill="#475569" font-size="13">GitHub Advanced Security</text>
+    </g>
+    <g transform="translate(150 382)">
+      <rect width="200" height="118" rx="16" fill="#ffffff"/>
+      <text x="18" y="34" fill="#1d4ed8" font-size="13" font-weight="700" letter-spacing="1.5">5 · SHIP</text>
+      <text x="18" y="60" fill="#0f172a" font-weight="700">GitHub Actions</text>
+      <text x="18" y="80" fill="#0f172a" font-weight="700">to GitHub Pages</text>
+      <text x="18" y="104" fill="#475569" font-size="13">CI · deploy on merge</text>
+    </g>
+    <g transform="translate(30 221)">
+      <rect width="210" height="118" rx="16" fill="#ffffff"/>
+      <text x="18" y="34" fill="#1d4ed8" font-size="13" font-weight="700" letter-spacing="1.5">6 · OPERATE</text>
+      <text x="18" y="60" fill="#0f172a" font-weight="700">Alerts, reports</text>
+      <text x="18" y="80" fill="#0f172a" font-weight="700">and next issues</text>
+      <text x="18" y="104" fill="#475569" font-size="13">security overview</text>
+    </g>
+  </g>
+</svg>
