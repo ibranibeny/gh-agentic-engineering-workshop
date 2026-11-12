@@ -191,6 +191,7 @@ td:first-child { font-weight: 600; color: var(--ink); }
   .mode { margin-left: auto; }
   .topnav { display: flex; order: 3; flex: 1 0 100%; margin-left: 0; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
   .topnav::-webkit-scrollbar { display: none; }
-  .topnav a { white-space: nowrap; padding: .32rem .55rem; font-size: .86rem; }
+  .topnav a { white-space: nowrap; padding: .32rem .45rem; font-size: .84rem; }
+  .topnav .nx { display: none; }
   .side { top: 118px; max-height: calc(100vh - 134px); }
 }

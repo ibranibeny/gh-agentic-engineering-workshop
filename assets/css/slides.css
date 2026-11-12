@@ -182,3 +182,5 @@ body.overview .frame .slide { transform: scale(.25); transform-origin: 0 0; }
   .frame { display: block !important; position: relative; left: auto; top: auto; margin: 0; width: 1280px; height: 720px; transform: none !important; box-shadow: none; outline: 0; break-after: page; page-break-after: always; overflow: hidden; }
   .frame .slide { transform: none !important; }
 }
+
+.person .avatar { color: #fff; font-size: 17px; }
