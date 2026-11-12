@@ -18,23 +18,28 @@
   }
 
   // Copy buttons: command blocks get a labelled button in their header, other code blocks a corner button
+  function legacyCopy(text) {
+    var active = document.activeElement;
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'fixed';
+    ta.style.top = '-1000px';
+    document.body.appendChild(ta);
+    ta.select();
+    var ok = false;
+    try { ok = document.execCommand('copy'); } catch (err) { ok = false; }
+    document.body.removeChild(ta);
+    if (active && active.focus) { active.focus(); }
+    return ok;
+  }
   function copyText(text) {
     if (navigator.clipboard && window.isSecureContext) {
-      return navigator.clipboard.writeText(text);
+      return navigator.clipboard.writeText(text).catch(function () {
+        if (!legacyCopy(text)) { throw new Error('copy failed'); }
+      });
     }
-    return new Promise(function (resolve, reject) {
-      var ta = document.createElement('textarea');
-      ta.value = text;
-      ta.setAttribute('readonly', '');
-      ta.style.position = 'fixed';
-      ta.style.top = '-1000px';
-      document.body.appendChild(ta);
-      ta.select();
-      var ok = false;
-      try { ok = document.execCommand('copy'); } catch (err) { ok = false; }
-      document.body.removeChild(ta);
-      if (ok) { resolve(); } else { reject(new Error('copy failed')); }
-    });
+    return legacyCopy(text) ? Promise.resolve() : Promise.reject(new Error('copy failed'));
   }
   document.querySelectorAll('pre').forEach(function (pre) {
     var block = pre.closest('.cmd');
