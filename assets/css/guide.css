@@ -185,7 +185,7 @@ td:first-child { font-weight: 600; color: var(--ink); }
 }
 
 /* Laptop widths: brand and developer switch on row 1, the chapter nav on one scrollable row 2 */
-@media (max-width: 1360px) {
+@media (max-width: 1560px) {
   html { scroll-padding-top: 124px; }
   .top-inner { flex-wrap: wrap; row-gap: .3rem; padding: .55rem 1.25rem .4rem; }
   .mode { margin-left: auto; }
@@ -194,6 +194,33 @@ td:first-child { font-weight: 600; color: var(--ink); }
   .topnav a { white-space: nowrap; padding: .32rem .45rem; font-size: .84rem; }
   .topnav .nx { display: none; }
 }
-@media (min-width: 1001px) and (max-width: 1360px) {
+@media (min-width: 1001px) and (max-width: 1560px) {
   .side { top: 118px; max-height: calc(100vh - 134px); }
 }
+
+/* Copy-and-paste command blocks */
+kbd { font-family: var(--mono); font-size: .8em; padding: .08em .42em; border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 5px; background: #fff; color: var(--ink); white-space: nowrap; }
+.cmds { margin: 1.1rem 0 1rem; padding: .7rem .85rem .85rem; border: 1px solid #d8dee4; border-left: 5px solid var(--navy-2); border-radius: var(--radius); background: var(--bg-soft); }
+.cmds-title { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; font-size: .74rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--navy-2); }
+.cmds-title a { font-size: .8rem; font-weight: 600; letter-spacing: 0; text-transform: none; }
+.cmd { margin: .6rem 0 0; border: 1px solid #30363d; border-radius: 10px; overflow: hidden; background: #0d1117; }
+.cmd-head { display: flex; align-items: center; gap: .55rem; min-height: 40px; padding: .3rem .45rem .3rem .75rem; background: #161b22; border-bottom: 1px solid #30363d; color: #e6edf3; font-size: .8rem; }
+.cmd-ico { font: 700 .76rem var(--mono); color: #7ee2b8; min-width: 1.2rem; }
+.cmd-where { font-weight: 700; }
+.cmd-tag { font-size: .7rem; font-weight: 700; padding: .08rem .55rem; border-radius: 999px; background: rgba(255, 255, 255, .12); color: #d0d7de; white-space: nowrap; }
+.cmd pre { margin: 0; border-radius: 0; padding: .85rem 1rem; }
+.cmd .copy-btn { position: static; margin-left: auto; padding: .32rem .85rem; font-size: .8rem; color: #fff; background: #238636; border: 1px solid rgba(240, 246, 252, .2); border-radius: 6px; }
+.cmd .copy-btn:hover { background: #2ea043; }
+.copy-btn.ok, .cmd .copy-btn.ok { background: #1f6feb; }
+.cmd-prompt { border-color: #6e40c9; }
+.cmd-prompt .cmd-head { background: #271d45; border-bottom-color: #4b3a8c; }
+.cmd-prompt .cmd-ico { color: #d2a8ff; }
+.cmd-form .cmd-ico { color: #ffd277; }
+.cmd-file .cmd-ico { color: #79c0ff; }
+.cmd-prompt pre, .cmd-form pre { white-space: pre-wrap; overflow-wrap: anywhere; }
+.cmd-note { margin: .4rem .15rem 0; font-size: .87rem; color: var(--muted); line-height: 1.5; }
+.sheet-step { margin: 1.5rem 0 0; }
+.sheet-step h3 { display: flex; gap: .6rem; align-items: baseline; flex-wrap: wrap; margin: 0 0 .1rem; font-size: 1.05rem; }
+.sheet-step h3 .no { color: var(--orange); font-weight: 800; }
+.sheet-step h3 a.go { margin-left: auto; font-size: .84rem; font-weight: 600; }
+@media print { .copy-btn { display: none !important; } .cmd pre { white-space: pre-wrap; } }

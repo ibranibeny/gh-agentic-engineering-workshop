@@ -5,21 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Home | Contoso Agent-Native Engineering Workshop</title>
 <meta name="description" content="Story-driven, hands-on workshop: build, review, secure and ship the Contoso company profile with GitHub agentic workflows, Copilot Fusion, Copilot code review, code security, Dependabot and GitHub Advanced Security.">
-<link rel="stylesheet" href="assets/css/guide.css?v=28907a11">
+<link rel="stylesheet" href="assets/css/guide.css?v=2f299697">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="top"><div class="top-inner">
 <a class="brand" href="index.html"><span class="brand-mark">C</span><span>Contoso Workshop<small>Agent-native engineering on GitHub</small></span></a>
-<nav class="topnav" aria-label="Chapters"><a href="index.html" aria-current="page">Home</a><a href="overview.html">Overview</a><a href="chapter-1.html">1 Repo</a><a href="chapter-2.html">2 Agentic<span class="nx"> SDLC</span></a><a href="chapter-3.html">3 Fusion</a><a href="chapter-4.html">4 <span class="nx">Code </span>review</a><a href="chapter-5.html">5 <span class="nx">Code </span>security</a><a href="chapter-6.html">6 Dependabot</a><a href="chapter-7.html">7 GHAS</a><a href="reference.html">Reference</a><a href="slides/index.html">Slides</a></nav>
+<nav class="topnav" aria-label="Chapters"><a href="index.html" aria-current="page">Home</a><a href="overview.html">Overview</a><a href="chapter-1.html">1 Repo</a><a href="chapter-2.html">2 Agentic<span class="nx"> SDLC</span></a><a href="chapter-3.html">3 Fusion</a><a href="chapter-4.html">4 <span class="nx">Code </span>review</a><a href="chapter-5.html">5 <span class="nx">Code </span>security</a><a href="chapter-6.html">6 Dependabot</a><a href="chapter-7.html">7 GHAS</a><a href="commands.html">Commands</a><a href="reference.html">Reference</a><a href="slides/index.html">Slides</a></nav>
 <div class="mode"><span>Developer mode</span><button id="devswitch" class="switch" type="button" role="switch" aria-checked="false" aria-label="Developer mode"></button></div>
 </div></header>
 <section class="hero"><div class="hero-inner"><div>
 <p class="eyebrow">Hands-on workshop &middot; about 3 hours &middot; real run, real screenshots</p>
 <h1>Ship Contoso's company profile the agent-native way</h1>
 <p>One story, seven chapters. You join Contoso Technology Solutions, an IT solution provider, as it moves to GitHub's agent-native engineering system. You will plan with an agentic workflow, build with Copilot Fusion, review with Copilot code review, secure with GitHub Advanced Security and Dependabot, and deploy to GitHub Pages.</p>
-<div class="btns"><a class="btn btn-green" href="chapter-1.html">Start Chapter 1</a><a class="btn btn-ghost" href="overview.html">Read the overview</a><a class="btn btn-ghost" href="slides/index.html">Present the slides</a></div>
+<div class="btns"><a class="btn btn-green" href="chapter-1.html">Start Chapter 1</a><a class="btn btn-ghost" href="overview.html">Read the overview</a><a class="btn btn-ghost" href="commands.html">Command sheet</a><a class="btn btn-ghost" href="slides/index.html">Present the slides</a></div>
 </div>
 <div class="hero-card"><h2>By the end you will have</h2><ol>
 <li>A live company profile on GitHub Pages, deployed by GitHub Actions</li>
@@ -45,10 +45,10 @@
 
 <h2 id="modes">Story mode and developer mode</h2>
 <div class="cards">
-<div class="card"><h3>Story mode (default)</h3><p>Scenes, click-by-click steps and annotated screenshots. Ideal for presenters, product owners and anyone new to GitHub.</p></div>
-<div class="card"><h3>Developer mode</h3><p>Switch it on in the top bar to reveal the exact commands, generated files, YAML, permissions and what happens under the hood. Your choice is remembered; add <code>?mode=dev</code> to a link to share it.</p></div>
+<div class="card"><h3>Story mode (default)</h3><p>Scenes, click-by-click steps, annotated screenshots and copy-ready commands. Ideal for presenters, product owners and anyone new to GitHub.</p></div>
+<div class="card"><h3>Developer mode</h3><p>Switch it on in the top bar to reveal generated files, YAML, permissions and what happens under the hood. Your choice is remembered; add <code>?mode=dev</code> to a link to share it.</p></div>
 </div>
-<div class="dev"><div class="dev-label">Developer mode</div><p>Developer mode is on. Purple panels like this one hold commands, file contents and internals. Turn the switch off to hide them again.</p></div>
+<div class="dev"><div class="dev-label">Developer mode</div><p>Developer mode is on. Purple panels like this one hold file contents, configuration and internals. Turn the switch off to hide them again.</p></div>
 
 <h2 id="slides">Presenting this workshop</h2>
 <div class="cards">
@@ -63,6 +63,7 @@
 <tr><td>GitHub Codespaces</td><td>Personal accounts get a monthly free allowance (120 core-hours on GitHub Free, enough for about 60 hours on a 2-core machine). Stop the codespace when you finish.</td></tr>
 <tr><td>A modern browser</td><td>No local installs: the codespace provides Node.js 22 and the GitHub CLI.</td></tr>
 </table></div>
+<div class="tip"><strong>Copy and paste.</strong> Every step you type has a dark command block with a <b>Copy</b> button, and purple blocks hold the Copilot prompts. All of them are also on one page: the <a href="commands.html">command sheet</a>.</div>
 <div class="tip"><strong>Workshop assets.</strong> Starter template: <a href="https://github.com/ibranibeny/contoso-company-profile-starter">contoso-company-profile-starter</a>. The repository from the real run: <a href="https://github.com/ibranibeny/contoso-company-profile">contoso-company-profile</a>. The live result: <a href="https://ibranibeny.github.io/contoso-company-profile/">https://ibranibeny.github.io/contoso-company-profile/</a>.</div>
 <div class="warn"><strong>Honest by design.</strong> The deck is a product overview; this guide is grounded in GitHub Docs and the GitHub Changelog as of 12 November 2026. Where they differ from the deck (for example, Copilot Projects is in public preview), the <a href="overview.html#deck-vs-docs">overview</a> says so and links the source.</div>
 <nav class="pager" aria-label="Chapter navigation"><span></span><a href="overview.html" style="text-align:right"><small>Next</small>Overview: the agent-native engineering system</a></nav>
@@ -71,6 +72,6 @@
 <span>Contoso is a fictional company. Workshop content by the APAC Solution Engineering team; not an official GitHub publication. Screenshots are from a real run on 12 Nov 2026; features and prices change, so check the linked GitHub sources.</span>
 <span><a href="https://github.com/ibranibeny/gh-agentic-engineering-workshop">Guide source</a> &middot; <a href="https://github.com/ibranibeny/contoso-company-profile-starter">Starter template</a> &middot; <a href="https://ibranibeny.github.io/contoso-company-profile/">Live Contoso site</a></span>
 </div></footer>
-<script src="assets/js/guide.js?v=36936e20"></script>
+<script src="assets/js/guide.js?v=a831a781"></script>
 </body>
 </html>

@@ -17,20 +17,51 @@
     });
   }
 
-  // Copy buttons on code blocks
+  // Copy buttons: command blocks get a labelled button in their header, other code blocks a corner button
+  function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text);
+    }
+    return new Promise(function (resolve, reject) {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.top = '-1000px';
+      document.body.appendChild(ta);
+      ta.select();
+      var ok = false;
+      try { ok = document.execCommand('copy'); } catch (err) { ok = false; }
+      document.body.removeChild(ta);
+      if (ok) { resolve(); } else { reject(new Error('copy failed')); }
+    });
+  }
   document.querySelectorAll('pre').forEach(function (pre) {
+    var block = pre.closest('.cmd');
+    var src = pre.querySelector('code') || pre;
     var b = document.createElement('button');
     b.type = 'button';
     b.className = 'copy-btn';
     b.textContent = 'Copy';
+    b.setAttribute('aria-live', 'polite');
+    b.setAttribute('title', block ? 'Copy: ' + block.getAttribute('data-label') : 'Copy code');
     b.addEventListener('click', function () {
-      var text = pre.querySelector('code') ? pre.querySelector('code').innerText : pre.innerText;
-      navigator.clipboard.writeText(text).then(function () {
+      var text = src.textContent.replace(/\s+$/, '');
+      copyText(text).then(function () {
         b.textContent = 'Copied';
-        setTimeout(function () { b.textContent = 'Copy'; }, 1500);
+        b.classList.add('ok');
+        setTimeout(function () { b.textContent = 'Copy'; b.classList.remove('ok'); }, 1600);
+      }, function () {
+        var r = document.createRange();
+        r.selectNodeContents(src);
+        var sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(r);
+        b.textContent = 'Press Ctrl+C';
+        setTimeout(function () { b.textContent = 'Copy'; }, 2500);
       });
     });
-    pre.appendChild(b);
+    if (block) { block.querySelector('.cmd-head').appendChild(b); } else { pre.appendChild(b); }
   });
 
   // Lightbox for screenshots
