@@ -109,9 +109,9 @@ svg.i { width: 20px; height: 20px; flex: none; }
 .mode-toggle button svg { width: 15px; height: 15px; }
 .mode-toggle button[aria-pressed="true"] { background: var(--surface); color: var(--text); box-shadow: var(--shadow-sm), 0 0 0 1px var(--border-subtle); }
 .mode-toggle button[data-mode-set="dev"][aria-pressed="true"] { color: var(--purple); }
-.theme-btn .g-dark { display: none; }
-[data-theme="dark"] .theme-btn .g-light { display: none; }
-[data-theme="dark"] .theme-btn .g-dark { display: inline; }
+.look-btn .g-dark { display: none; }
+[data-theme="dark"] .look-btn .g-light { display: none; }
+[data-theme="dark"] .look-btn .g-dark { display: inline; }
 .read-progress { position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; overflow: hidden; pointer-events: none; }
 .read-progress span { display: block; height: 100%; transform-origin: 0 50%; transform: scaleX(var(--read, 0)); background: linear-gradient(90deg, var(--teal), var(--accent)); }
 

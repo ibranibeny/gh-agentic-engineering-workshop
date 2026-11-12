@@ -45,14 +45,14 @@
   const darkMQ = window.matchMedia ? matchMedia('(prefers-color-scheme: dark)') : null;
   function applyTheme(t) {
     root.setAttribute('data-theme', t);
-    $$('.theme-btn').forEach(b => {
-      const label = t === 'dark' ? 'Switch to light theme' : 'Switch to dark theme';
+    $$('.look-btn').forEach(b => {
+      const label = t === 'dark' ? 'Use light colours' : 'Use dark colours';
       b.setAttribute('aria-label', label);
       b.title = label;
     });
   }
   applyTheme(root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light');
-  $$('.theme-btn').forEach(b => b.addEventListener('click', () => {
+  $$('.look-btn').forEach(b => b.addEventListener('click', () => {
     const t = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
     store.set('cw-theme', t);
     applyTheme(t);
