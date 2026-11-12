@@ -52,6 +52,8 @@ html, body { margin: 0; height: 100%; background: #2b2b2b; font: 12px/1.2 system
       else if (op === 'count') { log.push(arg + '=' + doc.querySelectorAll(arg).length); }
       else if (op === 'text') { var te = doc.querySelector(arg); log.push(arg + '="' + (te ? te.textContent.trim().slice(0, 80) : 'none') + '"'); }
       else if (op === 'attr') { var ab = arg.split('|'), ae = doc.querySelector(ab[0]); log.push(ab[0] + '@' + ab[1] + '=' + (ae ? ae.getAttribute(ab[1]) : 'none')); }
+      else if (op === 'at') { var xy = arg.split(','), stack = doc.elementsFromPoint(+xy[0], +xy[1]).slice(0, 5).map(function (el) { return el.tagName.toLowerCase() + (el.className && typeof el.className === 'string' ? '.' + el.className.trim().replace(/\s+/g, '.') : (el.getAttribute && el.getAttribute('class') ? '.' + el.getAttribute('class').replace(/\s+/g, '.') : '')); }); log.push('at ' + arg + ': ' + stack.join(' > ')); }
+      else if (op === 'wide') { var wl = []; Array.prototype.forEach.call(doc.querySelectorAll('body *'), function (el) { var r = el.getBoundingClientRect(); if (r.right > win.innerWidth + 1 && r.width > 0) { wl.push(el.tagName.toLowerCase() + '.' + String(el.getAttribute('class') || '').replace(/\s+/g, '.') + '(' + Math.round(r.left) + '..' + Math.round(r.right) + ')'); } }); log.push('wide: ' + wl.slice(0, 12).join(' , ') + ' total=' + wl.length); }
       else if (op === 'hscroll') { log.push('docW=' + doc.documentElement.scrollWidth + ' vw=' + win.innerWidth); }
     } catch (err) { log.push(op + ': ' + err.message); }
     setTimeout(function () { run(i + 1); }, wait);
