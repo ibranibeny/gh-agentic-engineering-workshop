@@ -26,8 +26,7 @@ body.notes-open .stage { bottom: 218px; }
 .sfoot { position: absolute; left: 64px; right: 64px; bottom: 22px; display: flex; justify-content: space-between; font-size: 13px; color: var(--muted); }
 
 /* Cover and closer */
-.slide.photo { padding: 0; color: #fff;
-  background: linear-gradient(90deg, rgba(13, 27, 52, .95) 0%, rgba(13, 27, 52, .88) 44%, rgba(13, 27, 52, .40) 72%, rgba(13, 27, 52, .18) 100%), var(--img) center / cover no-repeat; }
+.slide.photo { padding: 0; color: #fff; background-color: var(--navy); background-size: cover; background-position: center; background-repeat: no-repeat; }
 .hero { position: absolute; left: 72px; top: 50%; transform: translateY(-50%); width: 660px; }
 .hero .eyebrow { color: var(--teal); }
 .hero h1 { margin: 16px 0 18px; font-size: 56px; line-height: 1.08; letter-spacing: -.02em; }
@@ -155,12 +154,12 @@ body.notes-open .notes-panel { display: block; }
 .bar { position: fixed; left: 0; right: 0; bottom: 0; height: 58px; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 0 16px; background: #0d1626; color: #c9d6ea; font-size: 14px; }
 .bar .progress { position: absolute; left: 0; right: 0; top: 0; height: 3px; background: #1d2a41; }
 .bar .progress span { display: block; height: 100%; width: 0; background: var(--orange); transition: width .2s ease; }
-.bar a { color: #c9d6ea; text-decoration: none; }
+.bar a { color: #c9d6ea; text-decoration: none; white-space: nowrap; }
 .pager { display: flex; align-items: center; gap: 10px; }
 .pager button { width: 36px; height: 36px; border-radius: 50%; border: 1px solid #33445f; background: transparent; color: #fff; font-size: 22px; line-height: 1; cursor: pointer; }
 .pager span { min-width: 64px; text-align: center; }
-.actions { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
-.btn { border: 1px solid #33445f; background: #15223a; color: #e6edf3; border-radius: 8px; padding: 7px 12px; font-size: 13px; font-weight: 600; cursor: pointer; text-decoration: none; }
+.actions { display: flex; gap: 8px; flex-wrap: nowrap; justify-content: flex-end; }
+.btn { white-space: nowrap; border: 1px solid #33445f; background: #15223a; color: #e6edf3; border-radius: 8px; padding: 7px 12px; font-size: 13px; font-weight: 600; cursor: pointer; text-decoration: none; }
 .btn:hover, .pager button:hover { background: #1f3150; }
 .btn[aria-pressed="true"] { border-color: var(--orange); }
 

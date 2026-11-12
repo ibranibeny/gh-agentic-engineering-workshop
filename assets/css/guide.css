@@ -183,3 +183,14 @@ td:first-child { font-weight: 600; color: var(--ink); }
   .dev { display: block !important; }
   .wrap { display: block; }
 }
+
+/* Laptop widths: brand and developer switch on row 1, the chapter nav on one scrollable row 2 */
+@media (max-width: 1360px) {
+  html { scroll-padding-top: 124px; }
+  .top-inner { flex-wrap: wrap; row-gap: .3rem; padding: .55rem 1.25rem .4rem; }
+  .mode { margin-left: auto; }
+  .topnav { display: flex; order: 3; flex: 1 0 100%; margin-left: 0; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+  .topnav::-webkit-scrollbar { display: none; }
+  .topnav a { white-space: nowrap; padding: .32rem .55rem; font-size: .86rem; }
+  .side { top: 118px; max-height: calc(100vh - 134px); }
+}
