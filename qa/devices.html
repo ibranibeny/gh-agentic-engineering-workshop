@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<title>Device preview</title>
+<style>
+html, body { margin: 0; height: 100%; background: #2b2b2b; font: 12px/1.2 system-ui, sans-serif; color: #eee; overflow: hidden; }
+#bar { position: fixed; top: 0; left: 0; right: 0; height: 22px; display: flex; align-items: center; padding: 0 8px; background: #111; white-space: nowrap; overflow: hidden; }
+#stage { position: fixed; top: 22px; left: 0; right: 0; bottom: 0; overflow: hidden; }
+#f { position: absolute; top: 0; border: 0; background: #fff; transform-origin: 0 0; }
+</style>
+</head>
+<body>
+<div id="bar">loading</div>
+<div id="stage"><iframe id="f" title="Preview"></iframe></div>
+<script>
+(function () {
+  var q = new URLSearchParams(location.search);
+  var stage = document.getElementById('stage'), f = document.getElementById('f'), bar = document.getElementById('bar');
+  var aw = stage.clientWidth, ah = stage.clientHeight;
+  var w = +(q.get('w') || 390);
+  var s = Math.min(1, aw / w);
+  var h = +(q.get('h') || 0) || Math.floor(ah / s);
+  s = Math.min(s, ah / h);
+  var page = q.get('p') || '../index.html';
+  var log = [];
+  if (q.get('theme')) { localStorage.setItem('cw-theme', q.get('theme')); }
+  if (q.has('clear')) { ['cw-done', 'cw-theme', 'contoso-workshop-devmode'].forEach(function (k) { localStorage.removeItem(k); }); if (q.get('theme')) localStorage.setItem('cw-theme', q.get('theme')); }
+  if (q.get('done')) { localStorage.setItem('cw-done', JSON.stringify(q.get('done').split(','))); }
+  if (q.get('dev')) { localStorage.setItem('contoso-workshop-devmode', q.get('dev') === '1' ? '1' : '0'); }
+  f.style.width = w + 'px';
+  f.style.height = h + 'px';
+  f.style.left = Math.max(0, Math.round((aw - w * s) / 2)) + 'px';
+  f.style.transform = 'scale(' + s + ')';
+  function info(extra) { bar.textContent = w + '\u00d7' + h + ' \u00b7 scale ' + s.toFixed(2) + ' \u00b7 ' + page + (extra ? ' \u00b7 ' + extra : '') + (log.length ? ' \u00b7 ' + log.join(' | ') : ''); }
+  info();
+  var steps = (q.get('do') || '').split(';').filter(Boolean);
+  function run(i) {
+    if (i >= steps.length) { var win = f.contentWindow; info('y=' + Math.round(win.scrollY)); return; }
+    var st = steps[i], k = st.indexOf(':'), op = k < 0 ? st : st.slice(0, k), arg = k < 0 ? '' : st.slice(k + 1);
+    var doc = f.contentDocument, win = f.contentWindow, wait = 250;
+    try {
+      if (op === 'click') { var el = doc.querySelector(arg); if (el) { el.click(); } else { log.push('no ' + arg); } }
+      else if (op === 'scroll') { win.scrollTo(0, +arg); }
+      else if (op === 'to') { var t = doc.querySelector(arg); if (t) { win.scrollTo(0, t.getBoundingClientRect().top + win.scrollY - 70); } else { log.push('no ' + arg); } }
+      else if (op === 'type') { var a = doc.activeElement; if (a && 'value' in a) { a.value = arg; a.dispatchEvent(new win.Event('input', { bubbles: true })); } else { log.push('no input'); } }
+      else if (op === 'key') { var parts = arg.split('+'), key = parts.pop(); doc.dispatchEvent(new win.KeyboardEvent('keydown', { key: key, ctrlKey: parts.indexOf('ctrl') >= 0, metaKey: parts.indexOf('meta') >= 0, shiftKey: parts.indexOf('shift') >= 0, bubbles: true })); }
+      else if (op === 'wait') { wait = +arg; }
+    } catch (err) { log.push(op + ': ' + err.message); }
+    setTimeout(function () { run(i + 1); }, wait);
+  }
+  f.addEventListener('load', function () { setTimeout(function () { run(0); }, +(q.get('delay') || 600)); });
+  f.src = page;
+})();
+</script>
+</body>
+</html>
