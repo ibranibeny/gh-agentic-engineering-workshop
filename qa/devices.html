@@ -6,7 +6,7 @@
 <title>Device preview</title>
 <style>
 html, body { margin: 0; height: 100%; background: #2b2b2b; font: 12px/1.2 system-ui, sans-serif; color: #eee; overflow: hidden; }
-#bar { position: fixed; top: 0; left: 0; right: 0; height: 22px; display: flex; align-items: center; padding: 0 8px; background: #111; white-space: nowrap; overflow: hidden; }
+#bar { position: fixed; top: 0; left: 0; right: 0; min-height: 22px; max-height: 120px; padding: 3px 8px; background: #111; overflow: auto; z-index: 5; font-size: 11px; word-break: break-all; }
 #stage { position: fixed; top: 22px; left: 0; right: 0; bottom: 0; overflow: hidden; }
 #f { position: absolute; top: 0; border: 0; background: #fff; transform-origin: 0 0; }
 </style>
@@ -20,7 +20,7 @@ html, body { margin: 0; height: 100%; background: #2b2b2b; font: 12px/1.2 system
   var stage = document.getElementById('stage'), f = document.getElementById('f'), bar = document.getElementById('bar');
   var aw = stage.clientWidth, ah = stage.clientHeight;
   var w = +(q.get('w') || 390);
-  var s = Math.min(1, aw / w);
+  var s = q.get('z') ? +q.get('z') : Math.min(1, aw / w);
   var h = +(q.get('h') || 0) || Math.floor(ah / s);
   s = Math.min(s, ah / h);
   var page = q.get('p') || '../index.html';
@@ -47,6 +47,12 @@ html, body { margin: 0; height: 100%; background: #2b2b2b; font: 12px/1.2 system
       else if (op === 'type') { var a = doc.activeElement; if (a && 'value' in a) { a.value = arg; a.dispatchEvent(new win.Event('input', { bubbles: true })); } else { log.push('no input'); } }
       else if (op === 'key') { var parts = arg.split('+'), key = parts.pop(); doc.dispatchEvent(new win.KeyboardEvent('keydown', { key: key, ctrlKey: parts.indexOf('ctrl') >= 0, metaKey: parts.indexOf('meta') >= 0, shiftKey: parts.indexOf('shift') >= 0, bubbles: true })); }
       else if (op === 'wait') { wait = +arg; }
+      else if (op === 'css') { var bits = arg.split('|'), els = doc.querySelectorAll(bits[0]); if (!els.length) { log.push('no ' + bits[0]); } else { var cs = win.getComputedStyle(els[+(bits[2] || 0)]); log.push(bits[0] + ' {' + bits[1].split(',').map(function (pr) { return pr + ':' + cs.getPropertyValue(pr); }).join('; ') + '} n=' + els.length); } }
+      else if (op === 'rect') { var re = doc.querySelector(arg); if (re) { var r = re.getBoundingClientRect(); log.push(arg + ' [' + Math.round(r.left) + ',' + Math.round(r.top) + ' ' + Math.round(r.width) + 'x' + Math.round(r.height) + ']'); } else { log.push('no ' + arg); } }
+      else if (op === 'count') { log.push(arg + '=' + doc.querySelectorAll(arg).length); }
+      else if (op === 'text') { var te = doc.querySelector(arg); log.push(arg + '="' + (te ? te.textContent.trim().slice(0, 80) : 'none') + '"'); }
+      else if (op === 'attr') { var ab = arg.split('|'), ae = doc.querySelector(ab[0]); log.push(ab[0] + '@' + ab[1] + '=' + (ae ? ae.getAttribute(ab[1]) : 'none')); }
+      else if (op === 'hscroll') { log.push('docW=' + doc.documentElement.scrollWidth + ' vw=' + win.innerWidth); }
     } catch (err) { log.push(op + ': ' + err.message); }
     setTimeout(function () { run(i + 1); }, wait);
   }
