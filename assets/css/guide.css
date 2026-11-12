@@ -193,5 +193,7 @@ td:first-child { font-weight: 600; color: var(--ink); }
   .topnav::-webkit-scrollbar { display: none; }
   .topnav a { white-space: nowrap; padding: .32rem .45rem; font-size: .84rem; }
   .topnav .nx { display: none; }
+}
+@media (min-width: 1001px) and (max-width: 1360px) {
   .side { top: 118px; max-height: calc(100vh - 134px); }
 }
