@@ -17,11 +17,11 @@
 </div></header>
 
 <div class="wrap"><aside class="side" aria-label="On this page"><h2>In this chapter</h2><ol><li><a href="#scene">Scene: Raka&#39;s turn</a></li><li><a href="#step-5-1">5.1 Turn on CodeQL</a></li><li><a href="#step-5-2">5.2 Find the vulnerability</a></li><li><a href="#step-5-3">5.3 Generate a fix</a></li><li><a href="#step-5-4">5.4 Merge the fix</a></li><li><a href="#step-5-5">5.5 Push protection</a></li><li><a href="#checkpoint">Checkpoint</a></li></ol></aside><main id="main" class="main">
-<p class="eyebrow">Chapter 5 &middot; Tuesday 09:00 &middot; about 35 minutes</p>
+<p class="eyebrow">Chapter 5 &middot; about 35 minutes</p>
 <h1>Code security: CodeQL, Copilot Autofix and push protection</h1>
 <p class="lede">Turn on CodeQL code scanning, find the cross-site scripting bug hidden in the legacy newsroom search, fix it with Copilot Autofix and watch push protection stop a secret before it lands.</p>
 <div class="warn"><strong>Real run in progress.</strong> Chapter 5 is written from GitHub Docs and is being run end to end in the demo repository now. Annotated screenshots from that run replace the placeholders below in the next update.</div>
-<div id="scene"><div class="scene"><div class="when">Tuesday 09:00 &middot; Raka&#39;s office</div><p>Raka: &ldquo;Copilot reviewed the new code. Fine. Who reviewed the <i>old</i> code from the agency? Nobody. Scan everything.&rdquo;</p></div></div>
+<div id="scene"><div class="scene"><div class="when">Raka&#39;s office</div><p>Raka: &ldquo;Copilot reviewed the new code. Fine. Who reviewed the <i>old</i> code from the agency? Nobody. Scan everything.&rdquo;</p></div></div>
 
 <section class="step" id="step-5-1"><div class="step-head"><span class="step-no">5.1</span><h3>Turn on CodeQL default setup</h3></div><div class="step-body"><ol class="do"><li>Open <b>Settings</b> &rarr; <b>Advanced Security</b>.</li><li>Under <b>Code scanning</b>, find <b>CodeQL analysis</b>, select <b>Set up</b> &rarr; <b>Default</b>.</li><li>Review the languages (JavaScript/TypeScript and GitHub Actions) and select <b>Enable CodeQL</b>.</li></ol><div class="pending"><b>Figure 5.1</b> &middot; Real-run screenshot coming in the next update.</div><div class="pending"><b>Figure 5.2</b> &middot; Real-run screenshot coming in the next update.</div><div class="dev"><div class="dev-label">Developer mode</div><p>See <a href="https://docs.github.com/en/code-security/how-tos/find-and-fix-code-vulnerabilities/configure-code-scanning/configure-code-scanning">Configuring default setup for code scanning</a>.</p></div><p class="why"><b>Why it matters:</b> Default setup needs no workflow file: GitHub picks the languages and scans on every push and pull request to main, plus weekly.</p></div></section>
 <figure class="docimg"><img src="https://docs.github.com/assets/images/help/security/default-code-scanning-setup-ghas.png" alt="Code scanning settings with the Default setup option" loading="lazy" referrerpolicy="no-referrer"><figcaption>Default setup in GitHub Docs. Image: <a href="https://docs.github.com/en/code-security/how-tos/find-and-fix-code-vulnerabilities/configure-code-scanning/configure-code-scanning">GitHub Docs</a>, &copy; GitHub, Inc., <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</figcaption></figure>
@@ -40,7 +40,7 @@
 
 <h2 id="checkpoint">Checkpoint</h2>
 <div class="tip"><strong>Done when</strong> CodeQL is enabled, the XSS alert is fixed and closed, and you have seen push protection block the dummy token.</div>
-<div class="scene"><div class="when">Tuesday 10:45</div><p>Raka: &ldquo;Good. Now the part nobody wrote at all: your dependencies.&rdquo;</p></div>
+<div class="scene"><div class="when">Alert closed</div><p>Raka: &ldquo;Good. Now the part nobody wrote at all: your dependencies.&rdquo;</p></div>
 <nav class="pager" aria-label="Chapter navigation"><a href="chapter-4.html"><small>Previous</small>Chapter 4: Copilot code review</a><a href="chapter-6.html" style="text-align:right"><small>Next</small>Chapter 6: Dependabot</a></nav>
 </main></div>
 <footer class="foot"><div class="foot-inner">

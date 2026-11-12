@@ -17,11 +17,11 @@
 </div></header>
 
 <div class="wrap"><aside class="side" aria-label="On this page"><h2>In this chapter</h2><ol><li><a href="#scene">Scene: build it</a></li><li><a href="#step-3-1">3.1 Switch to Copilot Fusion</a></li><li><a href="#step-3-2">3.2 Hand over the issue</a></li><li><a href="#step-3-3">3.3 Watch Fusion work</a></li><li><a href="#step-3-4">3.4 Preview the page</a></li><li><a href="#step-3-5">3.5 Open the pull request</a></li><li><a href="#checkpoint">Checkpoint</a></li></ol></aside><main id="main" class="main">
-<p class="eyebrow">Chapter 3 &middot; Monday 13:00 &middot; about 30 minutes</p>
+<p class="eyebrow">Chapter 3 &middot; about 30 minutes</p>
 <h1>Build the Careers page with Copilot Fusion</h1>
 <p class="lede">Switch the Copilot CLI to Copilot Fusion and let it implement Lina&#39;s issue end to end: branch, code, content, tests and a pull request.</p>
 <div class="warn"><strong>Real run in progress.</strong> Chapter 3 is written from GitHub Docs and is being run end to end in the demo repository now. Annotated screenshots from that run replace the placeholders below in the next update.</div>
-<div id="scene"><div class="scene"><div class="when">Monday 13:00 &middot; back from lunch</div><p>Daniel: &ldquo;The triage comment is your spec. Don&#39;t pick a model, pick <b>Copilot Fusion</b> and let it route the work. I want to know if the result is good enough to merge.&rdquo;</p></div></div>
+<div id="scene"><div class="scene"><div class="when">Your desk</div><p>Daniel: &ldquo;The triage comment is your spec. Don&#39;t pick a model, pick <b>Copilot Fusion</b> and let it route the work. I want to know if the result is good enough to merge.&rdquo;</p></div></div>
 
 <section class="step" id="step-3-1"><div class="step-head"><span class="step-no">3.1</span><h3>Switch the Copilot CLI to Copilot Fusion</h3></div><div class="step-body"><p>In the same codespace terminal, start <code>copilot</code> (or continue the session from Chapter 2) and enter <code>/model</code>. Choose <b>Copilot Fusion</b>, then the effort tier: <b>Standard</b> is enough for this feature.</p><div class="pending"><b>Figure 3.1</b> &middot; Real-run screenshot coming in the next update.</div><div class="dev"><div class="dev-label">Developer mode</div><pre><code class="lang-bash">/model fusion           # inside a running session
 copilot --model fusion  # or start a new session with Fusion</code></pre><p>See <a href="https://docs.github.com/en/copilot/concepts/models/copilot-fusion">Copilot Fusion</a> in GitHub Docs. Your organisation&#39;s model policies decide which models Fusion may use.</p></div><p class="why"><b>Why it matters:</b> Fusion routes and combines models for each part of the task, so you stop guessing which single model fits. It is billed in AI credits at the rates of the models it calls.</p></div></section>
@@ -36,7 +36,7 @@ copilot --model fusion  # or start a new session with Fusion</code></pre><p>See 
 
 <h2 id="checkpoint">Checkpoint</h2>
 <div class="tip"><strong>Done when</strong> a pull request from <code>feature/careers-page</code> is open, linked to issue #1, with CI green.</div>
-<div class="scene"><div class="when">Monday 14:45</div><p>Daniel skims the diff. &ldquo;Looks right. But I don&#39;t merge what nobody reviewed, even if an AI wrote it. Especially if an AI wrote it.&rdquo;</p></div>
+<div class="scene"><div class="when">The diff is ready</div><p>Daniel skims the diff. &ldquo;Looks right. But I don&#39;t merge what nobody reviewed, even if an AI wrote it. Especially if an AI wrote it.&rdquo;</p></div>
 <nav class="pager" aria-label="Chapter navigation"><a href="chapter-2.html"><small>Previous</small>Chapter 2: Agentic SDLC</a><a href="chapter-4.html" style="text-align:right"><small>Next</small>Chapter 4: Copilot code review</a></nav>
 </main></div>
 <footer class="foot"><div class="foot-inner">
