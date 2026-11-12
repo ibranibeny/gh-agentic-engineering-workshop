@@ -109,9 +109,9 @@ svg.i { width: 20px; height: 20px; flex: none; }
 .mode-toggle button svg { width: 15px; height: 15px; }
 .mode-toggle button[aria-pressed="true"] { background: var(--surface); color: var(--text); box-shadow: var(--shadow-sm), 0 0 0 1px var(--border-subtle); }
 .mode-toggle button[data-mode-set="dev"][aria-pressed="true"] { color: var(--purple); }
-.theme-btn .moon { display: none; }
-[data-theme="dark"] .theme-btn .sun { display: none; }
-[data-theme="dark"] .theme-btn .moon { display: block; }
+.theme-btn .g-dark { display: none; }
+[data-theme="dark"] .theme-btn .g-light { display: none; }
+[data-theme="dark"] .theme-btn .g-dark { display: inline; }
 .read-progress { position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; overflow: hidden; pointer-events: none; }
 .read-progress span { display: block; height: 100%; transform-origin: 0 50%; transform: scaleX(var(--read, 0)); background: linear-gradient(90deg, var(--teal), var(--accent)); }
 
@@ -496,7 +496,7 @@ tbody tr:hover td { background: var(--bg-subtle); }
   .step { padding: 14px 14px 16px; border-radius: 14px; }
   .step-head { flex-wrap: wrap; gap: 10px; }
   .step-head h3 { flex-basis: calc(100% - 56px); }
-  .step-actions { width: 100%; margin-left: 56px; justify-content: flex-start; }
+  .step-actions { flex: 1 1 100%; margin-left: 0; padding-left: 56px; justify-content: flex-start; }
   .step-body { margin-left: 0; }
   .scene { padding: 14px 16px 14px 46px; }
   .scene::before { left: 14px; top: 16px; width: 20px; height: 20px; }

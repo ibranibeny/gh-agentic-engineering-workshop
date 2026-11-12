@@ -112,7 +112,7 @@
     setInert(true);
     setTimeout(() => {
       const cur = $('a.item[aria-current="page"]', outline);
-      if (cur) outline.scrollTop = Math.max(0, cur.offsetTop - outline.clientHeight / 3);
+      if (cur) { const bottom = cur.offsetTop + cur.offsetHeight + 24; if (bottom > outline.clientHeight) outline.scrollTop = bottom - outline.clientHeight * 0.75; }
       const c = $('.outline-close', outline);
       if (c) c.focus({ preventScroll: true });
     }, 40);

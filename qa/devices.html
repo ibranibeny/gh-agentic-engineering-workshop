@@ -13,11 +13,12 @@ html, body { margin: 0; height: 100%; background: #2b2b2b; font: 12px/1.2 system
 </head>
 <body>
 <div id="bar">loading</div>
-<div id="stage"><iframe id="f" title="Preview"></iframe></div>
+<div id="stage"></div>
 <script>
 (function () {
   var q = new URLSearchParams(location.search);
-  var stage = document.getElementById('stage'), f = document.getElementById('f'), bar = document.getElementById('bar');
+  var stage = document.getElementById('stage'), f = document.createElement('iframe'), bar = document.getElementById('bar');
+  f.id = 'f'; f.title = 'Preview';
   var aw = stage.clientWidth, ah = stage.clientHeight;
   var w = +(q.get('w') || 390);
   var s = q.get('z') ? +q.get('z') : Math.min(1, aw / w);
@@ -61,6 +62,7 @@ html, body { margin: 0; height: 100%; background: #2b2b2b; font: 12px/1.2 system
   }
   f.addEventListener('load', function () { setTimeout(function () { run(0); }, +(q.get('delay') || 600)); });
   f.src = page;
+  stage.appendChild(f);
 })();
 </script>
 </body>
